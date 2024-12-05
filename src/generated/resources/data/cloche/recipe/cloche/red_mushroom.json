@@ -1,0 +1,19 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:red_mushroom"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:red_mushroom"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

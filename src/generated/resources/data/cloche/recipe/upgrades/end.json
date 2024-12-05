@@ -1,0 +1,7 @@
+{
+  "type": "cloche:dimensional_upgrade",
+  "dimension": "minecraft:end",
+  "ingredient": {
+    "item": "cloche:end_upgrade"
+  }
+}

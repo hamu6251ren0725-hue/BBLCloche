@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "opolisutilities",
+  "key": {
+    "D": {
+      "tag": "minecraft:dirt"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "W": {
+      "tag": "c:buckets/water"
+    }
+  },
+  "pattern": [
+    "III",
+    "WDW",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:cloche"
+  }
+}

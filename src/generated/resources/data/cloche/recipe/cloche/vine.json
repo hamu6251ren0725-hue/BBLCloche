@@ -1,0 +1,19 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:vine"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:vine"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

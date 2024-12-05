@@ -1,0 +1,26 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:wheat"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:wheat_seeds"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:wheat_seeds"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

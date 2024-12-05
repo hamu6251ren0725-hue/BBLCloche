@@ -1,0 +1,34 @@
+{
+  "block.cloche.cloche": "Cloche",
+  "block.cloche.error.output_full": "Output slots are full!",
+  "block.cloche.error.no_recipe": "No recipe found!",
+  "block.cloche.error.not_on": "Not On!",
+  "block.cloche.error.wrong_dimension": "Wrong Dimension!",
+  "block.cloche.gui.seed_slot": "Seed Slot",
+  "block.cloche.gui.soil_slot": "Soil Slot",
+  "block.cloche.gui.catalyst_slot": "Catalyst Slot",
+  "block.cloche.gui.upgrade_slot": "Upgrade Slot",
+  "block.cloche.gui.on_off": "On/Off Button",
+  "block.cloche.jei.chance": "Chance: ",
+
+  "item.cloche.overworld_upgrade": "Overworld Upgrade",
+  "item.cloche.nether_upgrade": "Nether Upgrade",
+  "item.cloche.end_upgrade": "End Upgrade",
+  "item.cloche.no_seeds_upgrade": "No Seeds Upgrade",
+  "item.cloche.main_output_upgrade": "Main Output Upgrade",
+
+  "tooltip.cloche.upgrade.overworld": "Allows Overworld plants to grow in the Cloche",
+  "tooltip.cloche.upgrade.nether": "Allows Nether plants to grow in the Cloche",
+  "tooltip.cloche.upgrade.end": "Allows End plants to grow in the Cloche",
+  "tooltip.cloche.upgrade.no_seeds": "Removes the Seeds from the results",
+  "tooltip.cloche.upgrade.main_output_upgrade": "Increases the main output amount by 1 per upgrade",
+
+
+  "jei.dimension.in": "In Dimension: ",
+  "jei.cloche.upgrades": "Cloche Upgrades",
+  "all": "All",
+  "minecraft:overworld": "Overworld",
+  "minecraft:the_nether": "The Nether",
+  "minecraft:end": "The End"
+
+}

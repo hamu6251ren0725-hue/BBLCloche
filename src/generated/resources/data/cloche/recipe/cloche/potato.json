@@ -1,0 +1,26 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:potato"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:poisonous_potato"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:potato"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

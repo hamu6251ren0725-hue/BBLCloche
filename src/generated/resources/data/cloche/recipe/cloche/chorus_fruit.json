@@ -1,0 +1,20 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "dimension": "minecraft:end",
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:chorus_fruit"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "soil": {
+    "item": "minecraft:end_stone"
+  }
+}

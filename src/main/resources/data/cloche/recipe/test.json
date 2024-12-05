@@ -1,0 +1,7 @@
+{
+  "type": "cloche:dimensional_upgrade",
+  "ingredient": {
+    "item": "minecraft:diamond"
+  },
+  "dimension": "minecraft:the_nether"
+}

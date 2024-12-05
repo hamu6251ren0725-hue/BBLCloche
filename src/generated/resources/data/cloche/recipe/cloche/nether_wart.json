@@ -1,0 +1,20 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "dimension": "minecraft:the_nether",
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:nether_wart"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:nether_wart"
+  },
+  "soil": {
+    "item": "minecraft:soul_sand"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:melon"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:melon_seeds"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

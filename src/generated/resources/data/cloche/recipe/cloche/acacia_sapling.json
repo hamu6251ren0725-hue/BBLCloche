@@ -1,0 +1,33 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 2,
+        "id": "minecraft:acacia_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:acacia_sapling"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:stick"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:acacia_sapling"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 2,
+        "id": "minecraft:mangrove_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:mangrove_propagule"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:stick"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:mangrove_propagule"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:beetroot"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:beetroot_seeds"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:beetroot_seeds"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

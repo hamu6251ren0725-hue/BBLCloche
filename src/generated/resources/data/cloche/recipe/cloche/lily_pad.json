@@ -1,0 +1,19 @@
+{
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:lily_pad"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:lily_pad"
+  },
+  "soil": {
+    "tag": "c:buckets/water"
+  }
+}
