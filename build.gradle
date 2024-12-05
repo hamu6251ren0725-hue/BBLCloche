@@ -1,4 +1,4 @@
-//import net.darkhax.curseforgegradle.TaskPublishCurseForge
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
     id 'java-library'
@@ -135,14 +135,13 @@ idea {
     }
 }
 
-/*
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
     group "modpublishing"
 
     apiToken = System.getenv("curseforge_token").toString()
 
-    def projectId = 1146799
+    def projectId = 1153960
     def mainFile = upload(projectId, jar)
 
     mainFile.changelog = changelog
@@ -156,7 +155,7 @@ tasks.getByName("modrinth").setGroup("modpublishing")
 
 modrinth {
     token = System.getenv("modrinth_token").toString()
-    projectId = "Y1nt0bKX"
+    projectId = "4K7cmETW"
     versionType = "release"
     versionName = "bbl-flight-blocks-" + "$minecraft_version" + "-" + "$mod_version"
     uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
@@ -171,5 +170,5 @@ modrinth {
     }
 }
 
- */
+
 
