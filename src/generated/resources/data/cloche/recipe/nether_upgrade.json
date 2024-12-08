@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cloche",
+  "key": {
+    "U": {
+      "item": "bblcore:upgrade_base"
+    },
+    "W": {
+      "item": "minecraft:nether_wart_block"
+    }
+  },
+  "pattern": [
+    " W ",
+    "WUW",
+    " W "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:nether_upgrade"
+  }
+}

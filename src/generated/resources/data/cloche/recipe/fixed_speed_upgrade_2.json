@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cloche",
+  "key": {
+    "G": {
+      "tag": "c:gems/diamond"
+    },
+    "U": {
+      "item": "cloche:fixed_speed_upgrade_1"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GUG",
+    " G "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:fixed_speed_upgrade_2"
+  }
+}

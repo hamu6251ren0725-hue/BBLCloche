@@ -27,6 +27,10 @@
   "seed": {
     "item": "minecraft:birch_sapling"
   },
+  "shears_result": {
+    "count": 2,
+    "id": "minecraft:birch_leaves"
+  },
   "soil": {
     "tag": "minecraft:dirt"
   }

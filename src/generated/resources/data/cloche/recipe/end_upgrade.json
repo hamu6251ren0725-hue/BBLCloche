@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cloche",
+  "key": {
+    "P": {
+      "item": "minecraft:purpur_block"
+    },
+    "U": {
+      "item": "bblcore:upgrade_base"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PUP",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:end_upgrade"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "cloche:block/cloche"
+    },
+    "powered=true": {
+       "model": "cloche:block/cloche_working"
+    }
+  }
+}

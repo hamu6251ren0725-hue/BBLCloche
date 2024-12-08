@@ -1,6 +1,14 @@
-// 1.21.1	2024-12-05T15:00:46.141313	cloche Item Models
+// 1.21.1	2024-12-08T09:47:47.006217	cloche Item Models
 f68cc7ae460358d62590d971cac54ac97f43d4d6 assets/cloche/models/item/end_upgrade.json
+2eda041b09a5f3dafaf86b866c2c1ed5e0f02d2f assets/cloche/models/item/fixed_speed_upgrade_1.json
+26ce2f264f694543eaa0b30cb064804503914fda assets/cloche/models/item/fixed_speed_upgrade_2.json
+152f04cd932f7a225af66274ec81c5723a1804e0 assets/cloche/models/item/fixed_speed_upgrade_3.json
 0c589c04ccff7278e03df2eedefe000e157933a8 assets/cloche/models/item/main_output_upgrade.json
 1ef64fedf64023037b8f419bb91529489b058fc4 assets/cloche/models/item/nether_upgrade.json
 03e9e0b97e1412a5c58c8dc5135775d24369c6d4 assets/cloche/models/item/no_seeds_upgrade.json
 f7da8c338cdd3ad8e0c508d9c92d0d89fd749868 assets/cloche/models/item/overworld_upgrade.json
+fa29e53b9aaa48741952b8ffe127d65f9b2ebabe assets/cloche/models/item/percentage_speed_upgrade_1.json
+43bfa25c03631d4c905b97ca809e28c2684c9b48 assets/cloche/models/item/percentage_speed_upgrade_2.json
+c278bd7f0db160a87b65fc3e83c3c654084ac9c3 assets/cloche/models/item/percentage_speed_upgrade_3.json
+03d324e7a3f20476d5ffc04e12b2a4fe0a67e861 assets/cloche/models/item/remove_all_other_outputs_upgrade.json
+5ff11bde071b24a4054094906942125f3fcf9e4d assets/cloche/models/item/shears_upgrade.json

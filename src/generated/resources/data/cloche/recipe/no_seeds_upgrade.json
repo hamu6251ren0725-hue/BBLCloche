@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cloche",
+  "key": {
+    "S": {
+      "tag": "c:seeds"
+    },
+    "U": {
+      "item": "bblcore:upgrade_base"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SUS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:no_seeds_upgrade"
+  }
+}

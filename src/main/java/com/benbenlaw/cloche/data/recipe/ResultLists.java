@@ -98,10 +98,14 @@ public class ResultLists {
         CRIMSON_FUNGUS_RESULTS = NonNullList.create();
         CRIMSON_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.CRIMSON_STEM, 2), 1.0f));
         CRIMSON_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.CRIMSON_FUNGUS), 0.5f));
+        CRIMSON_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.SHROOMLIGHT), 0.1f));
+        CRIMSON_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.NETHER_WART_BLOCK), 0.4f));
 
         WARPED_FUNGUS_RESULTS = NonNullList.create();
         WARPED_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.WARPED_STEM, 2), 1.0f));
         WARPED_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.WARPED_FUNGUS), 0.5f));
+        WARPED_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.SHROOMLIGHT), 0.1f));
+        WARPED_FUNGUS_RESULTS.add(new ChanceResult(new ItemStack(Items.WARPED_WART_BLOCK), 0.4f));
 
         OAK_SAPLING_RESULTS = NonNullList.create();
         OAK_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.OAK_LOG, 2), 1.0f));

@@ -34,13 +34,10 @@ public class JEIClochePlugin implements IModPlugin {
     public static RecipeType<ClocheRecipe> CLOCHE =
             new RecipeType<>(ClocheRecipeCategory.UID, ClocheRecipe.class);
 
-    public static RecipeType<ItemStack> CLOCHE_UPGRADES =
-            RecipeType.create(Cloche.MOD_ID, "cloche_upgrades", ItemStack.class);
 
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ClocheBlocks.CLOCHE.get()), ClocheRecipeCategory.RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ClocheBlocks.CLOCHE.get()), CLOCHE_UPGRADES);
     }
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
@@ -49,9 +46,6 @@ public class JEIClochePlugin implements IModPlugin {
 
         registration.addRecipeCategories(new
                 ClocheRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-
-        registration.addRecipeCategories(new
-                ClocheUpgradesCategory(registration.getJeiHelpers().getGuiHelper()));
 
         slotDrawable = guiHelper.getSlotDrawable();
     }
@@ -63,10 +57,5 @@ public class JEIClochePlugin implements IModPlugin {
         registration.addRecipes(ClocheRecipeCategory.RECIPE_TYPE,
                 recipeManager.getAllRecipesFor(ClocheRecipes.CLOCHE_TYPE.get()).stream().map(RecipeHolder::value).toList());
 
-        List<ItemStack> upgrades = new ArrayList<>();
-        List<DimensionalUpgradeRecipe> dimensionalUpgradeRecipes =
-                recipeManager.getAllRecipesFor(DimensionalUpgradeRecipe.Type.INSTANCE).stream().map(RecipeHolder::value).toList();
-        dimensionalUpgradeRecipes.forEach(recipe -> upgrades.add(recipe.ingredient().getItems()[0]));
-        registration.addRecipes(CLOCHE_UPGRADES, upgrades);
     }
 }

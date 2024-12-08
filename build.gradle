@@ -67,8 +67,8 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:5955924"
-    runtimeOnly "curse.maven:bbl-core-1135181:5955924"
+    compileOnly "curse.maven:bbl-core-1135181:5973478"
+    runtimeOnly "curse.maven:bbl-core-1135181:5973478"
 
     //JEI
     compileOnly "curse.maven:jei-238222:5846880"
@@ -157,7 +157,7 @@ modrinth {
     token = System.getenv("modrinth_token").toString()
     projectId = "4K7cmETW"
     versionType = "release"
-    versionName = "bbl-flight-blocks-" + "$minecraft_version" + "-" + "$mod_version"
+    versionName = "bbl-cloche-" + "$minecraft_version" + "-" + "$mod_version"
     uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
 
     gameVersions.addAll("1.21", "1.21.1")

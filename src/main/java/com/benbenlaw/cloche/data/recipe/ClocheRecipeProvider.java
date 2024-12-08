@@ -34,18 +34,20 @@ public class ClocheRecipeProvider implements RecipeBuilder {
     protected int duration;
     protected NonNullList<ChanceResult> results;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+    protected ItemStack shearsResult;
 
-    public ClocheRecipeProvider(Ingredient seed, Ingredient soil, Ingredient catalyst, String dimension, int duration, NonNullList<ChanceResult> results) {
+    public ClocheRecipeProvider(Ingredient seed, Ingredient soil, Ingredient catalyst, String dimension, int duration, NonNullList<ChanceResult> results, ItemStack shearsResult) {
         this.seed = seed;
         this.soil = soil;
         this.catalyst = catalyst != null ? catalyst : Ingredient.of(ItemStack.EMPTY);
         this.dimension = dimension != null ? dimension : "all";
         this.duration = duration;
         this.results = results;
+        this.shearsResult = shearsResult != null ? shearsResult : ItemStack.EMPTY;
     }
 
-    public static ClocheRecipeProvider ClocheRecipeBuilder(Ingredient seed, Ingredient soil, Ingredient catalyst, String dimension, int duration, NonNullList<ChanceResult> results) {
-        return new ClocheRecipeProvider(seed, soil, catalyst, dimension, duration, results);
+    public static ClocheRecipeProvider ClocheRecipeBuilder(Ingredient seed, Ingredient soil, Ingredient catalyst, String dimension, int duration, NonNullList<ChanceResult> results, ItemStack shearsResult) {
+        return new ClocheRecipeProvider(seed, soil, catalyst, dimension, duration, results, shearsResult);
     }
     @Override
     public @NotNull RecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
@@ -76,7 +78,7 @@ public class ClocheRecipeProvider implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
-        ClocheRecipe clocheRecipe = new ClocheRecipe(seed, soil, catalyst, dimension, duration, results);
+        ClocheRecipe clocheRecipe = new ClocheRecipe(seed, soil, catalyst, dimension, duration, results, shearsResult);
         recipeOutput.accept(id, clocheRecipe, builder.build(id.withPrefix("recipes/cloche/")));
 
     }

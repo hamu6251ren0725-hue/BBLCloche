@@ -1,0 +1,8 @@
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "minecraft:emerald"
+  },
+  "modifier_type": "percent",
+  "modifier": 10
+}

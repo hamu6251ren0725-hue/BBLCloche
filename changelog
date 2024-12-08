@@ -1,5 +1,41 @@
 Changelog BBL Cloche
 
+1.0.2
+Updated to BBL Core 1.1.24
+Added recipes for upgrades
+Fixed cloche textures
+Added shroom light and wart blocks to crimson and warped recipes
+recipes can now have a optional shears_result for when a shears upgrade is used this block is added
+Added Shears Upgrade
+Dimensional Upgrades now automatically generate there tooltip based off the recipe,
+    This allows for custom items to have the tooltip generated for them to provide consistent information
+Added Speed Upgrades recipe, include fixed and percentage based upgrades
+    These upgrades also generate there tooltip based off the recipe recipe example below
+```js
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "cloche:fixed_speed_upgrade_3"
+  },
+  "modifier": 300,
+  "modifier_type": "fixed"
+}
+```
+```js
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "cloche:percentage_speed_upgrade_1"
+  },
+  "modifier": 5,
+  "modifier_type": "percentage"
+}
+```
+Fixes is an amount of ticks taken off the total time, percentage is a percentage of the total time taken off
+Percentage upgrade effect happen before fixed upgrade effects
+
+Added Logo by Yuki
+
 1.0.1
 Added Auto Updating to Curse Forge and Modrinth
 

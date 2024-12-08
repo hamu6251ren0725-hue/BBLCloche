@@ -27,6 +27,10 @@
   "seed": {
     "item": "minecraft:jungle_sapling"
   },
+  "shears_result": {
+    "count": 2,
+    "id": "minecraft:jungle_leaves"
+  },
   "soil": {
     "tag": "minecraft:dirt"
   }

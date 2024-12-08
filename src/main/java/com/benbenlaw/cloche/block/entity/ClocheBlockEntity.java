@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +35,7 @@ import static com.benbenlaw.cloche.block.ClocheBlock.POWERED;
 public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvider {
 
     public final ContainerData data;
+    public static SpeedUpgradeLogic speedUpgradeLogic = new SpeedUpgradeLogic();
     public int progress = 0;
     public int maxProgress = 1000000;
     public String errorMessage = "";
@@ -170,12 +172,18 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
             Optional<RecipeHolder<ClocheRecipe>> match = level.getRecipeManager()
                     .getRecipeFor(ClocheRecipe.Type.INSTANCE, inventory, level);
 
-            match.ifPresent(clocheRecipeRecipeHolder -> maxProgress = clocheRecipeRecipeHolder.value().duration());
+            int recipeMaxDuration = 1000000;
+            if (match.isPresent()) {
+                recipeMaxDuration = match.get().value().getDuration();
+            }
+
             sync();
 
             if (this.getBlockState().getValue(POWERED)) {
 
                 if (match.isPresent()) {
+
+                    maxProgress = speedUpgradeLogic.getNewDuration(recipeMaxDuration, itemHandler, level);
 
                     ClocheRecipe currentRecipe = match.get().value();
                     if (correctDimension(currentRecipe)) {
@@ -217,7 +225,19 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         return clocheDimension.equals(recipe.getDimension()) || Objects.equals(recipe.getDimension(), "all");
     }
 
+    public ItemStack hasShearsUpgrade(ClocheRecipe recipe) {
+        ItemStack leavesBlock = ItemStack.EMPTY;
+        boolean hasUpgrade1 = itemHandler.getStackInSlot(UPGRADE_SLOT_1).is(ClocheItems.SHEARS_UPGRADE);
+        boolean hasUpgrade2 = itemHandler.getStackInSlot(UPGRADE_SLOT_2).is(ClocheItems.SHEARS_UPGRADE);
+        boolean hasUpgrade3 = itemHandler.getStackInSlot(UPGRADE_SLOT_3).is(ClocheItems.SHEARS_UPGRADE);
+        if (hasUpgrade1 || hasUpgrade2 || hasUpgrade3) {
 
+            if (!recipe.shearsResult().isEmpty()) {
+                leavesBlock = recipe.shearsResult();
+            }
+        }
+        return leavesBlock;
+    }
     public Optional<String> getDimensionalUpgradeInfo() {
         RecipeInput inventory = new RecipeInput() {
             @Override
@@ -302,6 +322,12 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         int mainOutputUpgradeCount = getMainOutputUpgradeCount();
         if (!results.isEmpty() && mainOutputUpgradeCount > 0) {
             results.getFirst().grow(mainOutputUpgradeCount);
+        }
+
+        // Shears Upgrade, add leaves block to output
+        ItemStack leavesBlock = hasShearsUpgrade(recipe);
+        if (!leavesBlock.isEmpty()) {
+            results.add(hasShearsUpgrade(recipe));
         }
 
         for (ItemStack result : results) {

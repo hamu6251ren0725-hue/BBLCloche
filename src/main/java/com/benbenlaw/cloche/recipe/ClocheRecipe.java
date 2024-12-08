@@ -27,7 +27,9 @@ public record ClocheRecipe (
         Ingredient catalyst,
         String dimension,
         int duration,
-        NonNullList<ChanceResult> results) implements Recipe<RecipeInput> {
+        NonNullList<ChanceResult> results,
+
+        ItemStack shearsResult) implements Recipe<RecipeInput> {
 
         @Override
         public boolean matches(RecipeInput container, @NotNull Level level) {
@@ -92,6 +94,9 @@ public record ClocheRecipe (
         public String getDimension() {
                 return dimension;
         }
+        public ItemStack getShearsResult() {
+                return shearsResult;
+        }
         public int getDuration() {
                 return duration;
         }
@@ -128,7 +133,8 @@ public record ClocheRecipe (
                                         NonNullList<ChanceResult> nonNullList = NonNullList.create();
                                         nonNullList.addAll(chanceResults);
                                         return DataResult.success(nonNullList);
-                                }, DataResult::success).forGetter(ClocheRecipe::getRollResults)
+                                }, DataResult::success).forGetter(ClocheRecipe::getRollResults),
+                                ItemStack.CODEC.optionalFieldOf("shears_result", ItemStack.EMPTY).forGetter(ClocheRecipe::shearsResult)
                         ).apply(instance, ClocheRecipe::new)
                 );
 
@@ -151,7 +157,8 @@ public record ClocheRecipe (
                         int size = buffer.readVarInt();
                         NonNullList<ChanceResult> outputs = NonNullList.withSize(size, ChanceResult.EMPTY);
                         outputs.replaceAll(ignored -> ChanceResult.read(buffer));
-                        return new ClocheRecipe(seed, soil, catalyst, dimension, duration, outputs);
+                        ItemStack shearsResult = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+                        return new ClocheRecipe(seed, soil, catalyst, dimension, duration, outputs, shearsResult);
                 }
                 private static void write(RegistryFriendlyByteBuf buffer, ClocheRecipe recipe) {
                         Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.seed);
@@ -163,6 +170,7 @@ public record ClocheRecipe (
                         for (ChanceResult output : recipe.results) {
                                 output.write(buffer);
                         }
+                        ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.shearsResult);
                 }
         }
 

@@ -1,0 +1,8 @@
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "cloche:percentage_speed_upgrade_2"
+  },
+  "modifier": 10,
+  "modifier_type": "percentage"
+}

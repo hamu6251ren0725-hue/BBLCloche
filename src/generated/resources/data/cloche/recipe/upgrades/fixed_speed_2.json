@@ -1,0 +1,8 @@
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "cloche:fixed_speed_upgrade_2"
+  },
+  "modifier": 200,
+  "modifier_type": "fixed"
+}

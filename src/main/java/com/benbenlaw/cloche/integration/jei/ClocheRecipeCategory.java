@@ -17,10 +17,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
 
@@ -85,26 +89,45 @@ public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
                     .setBackground(JEIClochePlugin.slotDrawable, -1, -1);
         }
 
+        List<ChanceResult> modifiedOutputs = new ArrayList<>(recipe.getRollResults());
+        if (!recipe.getShearsResult().isEmpty()) {
+            modifiedOutputs.addLast(new ChanceResult(recipe.getShearsResult(), 1.0f));
+        }
 
-        NonNullList<ChanceResult> recipeOutputs = recipe.getRollResults();
-
-        int size = recipeOutputs.size();
+        int size = modifiedOutputs.size();
         int centerX = size > 0 ? 1 : 10;
         int centerY = size > 4 ? 1 : 10;
+        int xOffset = 0;
+        int yOffset = 0;
+        int index = 0;
 
         for (int i = 0; i < size; i++) {
-            int xOffset = centerX + (i % 4) * 18;
-            int yOffset = centerY + ((i / 4) * 18);
-            int index = i;
+            xOffset = centerX + (i % 4) * 18;
+            yOffset = centerY + ((i / 4) * 18);
+            index = i;
 
+            int finalIndex = index;
             builder.addSlot(RecipeIngredientRole.OUTPUT, 67 + xOffset, yOffset)
-                    .addItemStack(recipeOutputs.get(i).stack()).addRichTooltipCallback((slotView, tooltip) -> {
-                        ChanceResult output = recipeOutputs.get(index);
+                    .addItemStack(modifiedOutputs.get(i).stack()).addRichTooltipCallback((slotView, tooltip) -> {
+                        ChanceResult output = modifiedOutputs.get(finalIndex);
                         float chance = output.chance();
-                            tooltip.add(Component.translatable("block.cloche.jei.chance")
-                                    .append(String.valueOf((int) (chance * 100)))
-                                    .append("%").withStyle(ChatFormatting.GOLD));
+                        tooltip.add(Component.translatable("block.cloche.jei.chance")
+                                .append(String.valueOf((int) (chance * 100)))
+                                .append("%").withStyle(ChatFormatting.GOLD));
+                        if (finalIndex == 0) {
+                            tooltip.add(Component.translatable("block.cloche.jei.main_output")
+                                    .withStyle(ChatFormatting.GREEN));
+                        }
+                        if (output.stack().is(recipe.getShearsResult().getItem())) {
+                            tooltip.add(Component.translatable("block.cloche.jei.shears_result")
+                                    .withStyle(ChatFormatting.GREEN));
+                        }
+                        if (recipe.getSeed().test(output.stack()) && finalIndex > 0) {
+                            tooltip.add(Component.translatable("block.cloche.jei.seeds_result")
+                                    .withStyle(ChatFormatting.GREEN));
+                        }
                     }).setBackground(JEIClochePlugin.slotDrawable, -1, -1);
-            }
+        }
     }
+
 }

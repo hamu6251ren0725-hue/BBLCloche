@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cloche",
+  "key": {
+    "C": {
+      "item": "minecraft:golden_carrot"
+    },
+    "U": {
+      "item": "bblcore:upgrade_base"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CUC",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cloche:main_output_upgrade"
+  }
+}

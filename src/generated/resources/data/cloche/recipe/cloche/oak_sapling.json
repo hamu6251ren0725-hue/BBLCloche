@@ -34,6 +34,10 @@
   "seed": {
     "item": "minecraft:oak_sapling"
   },
+  "shears_result": {
+    "count": 2,
+    "id": "minecraft:oak_leaves"
+  },
   "soil": {
     "tag": "minecraft:dirt"
   }

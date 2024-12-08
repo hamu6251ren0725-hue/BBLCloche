@@ -16,6 +16,34 @@
         "count": 1,
         "id": "minecraft:crimson_fungus"
       }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:shroomlight"
+      }
+    },
+    {
+      "chance": 0.4,
+      "item": {
+        "count": 1,
+        "id": "minecraft:nether_wart_block"
+      }
+    },
+    {
+      "chance": 0.4,
+      "item": {
+        "count": 1,
+        "id": "minecraft:diamond"
+      }
+    },
+    {
+      "chance": 0.4,
+      "item": {
+        "count": 1,
+        "id": "minecraft:emerald"
+      }
     }
   ],
   "seed": {

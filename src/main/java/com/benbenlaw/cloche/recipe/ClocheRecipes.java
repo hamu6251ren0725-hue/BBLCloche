@@ -28,6 +28,11 @@ public class ClocheRecipes {
     public static final Supplier<RecipeType<DimensionalUpgradeRecipe>> DIMENSIONAL_UPGRADE_TYPE =
             TYPES.register("dimensional_upgrade", () -> DimensionalUpgradeRecipe.Type.INSTANCE);
 
+    //Speed Upgrade
+    public static final Supplier<RecipeSerializer<SpeedUpgradeRecipe>> SPEED_UPGRADE_SERIALIZER =
+            SERIALIZER.register("speed_upgrade", () -> SpeedUpgradeRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeType<SpeedUpgradeRecipe>> SPEED_UPGRADE_TYPE =
+            TYPES.register("speed_upgrade", () -> SpeedUpgradeRecipe.Type.INSTANCE);
     public static void register(IEventBus eventBus) {
         SERIALIZER.register(eventBus);
         TYPES.register(eventBus);

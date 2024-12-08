@@ -1,0 +1,9 @@
+{
+  "type": "cloche:speed_upgrade",
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "modifier_type": "percent",
+  "modifier": 5
+
+}
