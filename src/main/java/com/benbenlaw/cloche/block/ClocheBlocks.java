@@ -19,7 +19,7 @@ public class ClocheBlocks {
 
 
     public static final DeferredBlock<Block> CLOCHE = registerBlock("cloche",
-            () -> new ClocheBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+            () -> new ClocheBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 
 
 

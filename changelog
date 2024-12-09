@@ -1,5 +1,10 @@
 Changelog BBL Cloche
 
+
+1.0.3
+Added the client side rendering of crops
+Enabled the item handler to extract items from the cloche
+
 1.0.2
 Updated to BBL Core 1.1.24
 Added recipes for upgrades

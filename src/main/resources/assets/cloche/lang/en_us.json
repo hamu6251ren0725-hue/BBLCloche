@@ -42,6 +42,9 @@
   "all": "All",
   "minecraft:overworld": "Overworld",
   "minecraft:the_nether": "The Nether",
-  "minecraft:end": "The End"
+  "minecraft:end": "The End",
+
+  "itemGroup.cloche": "BBL Cloche"
+
 
 }

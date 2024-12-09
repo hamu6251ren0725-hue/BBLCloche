@@ -2,6 +2,7 @@ package com.benbenlaw.cloche;
 
 import com.benbenlaw.cloche.block.ClocheBlocks;
 import com.benbenlaw.cloche.block.entity.ClocheBlockEntities;
+import com.benbenlaw.cloche.item.ClocheCreativeModTab;
 import com.benbenlaw.cloche.item.ClocheItems;
 import com.benbenlaw.cloche.networking.ClocheMessages;
 import com.benbenlaw.cloche.recipe.ClocheRecipes;
@@ -14,6 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -29,11 +31,13 @@ public class Cloche{
 
         ClocheBlocks.BLOCKS.register(modEventBus);
         ClocheBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        ClocheCreativeModTab.CREATIVE_MODE_TABS.register(modEventBus);
         ClocheItems.ITEMS.register(modEventBus);
         ClocheRecipes.SERIALIZER.register(modEventBus);
         ClocheRecipes.TYPES.register(modEventBus);
         ClocheMenus.MENUS.register(modEventBus);
 
+        modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::commonSetup);
 
 
@@ -50,6 +54,10 @@ public class Cloche{
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
    //         event.accept(FlightBlocksBlocks.FLIGHT_BLOCK.get());
         }
+    }
+
+    public void registerCapabilities(RegisterCapabilitiesEvent event) {
+        ClocheBlockEntities.registerCapabilities(event);
     }
 
     @EventBusSubscriber(modid = Cloche.MOD_ID, bus = EventBusSubscriber.Bus.MOD ,value = Dist.CLIENT)

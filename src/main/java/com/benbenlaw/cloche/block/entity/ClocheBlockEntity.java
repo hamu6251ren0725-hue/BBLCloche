@@ -5,7 +5,9 @@ import com.benbenlaw.cloche.recipe.ClocheRecipe;
 import com.benbenlaw.cloche.recipe.DimensionalUpgradeRecipe;
 import com.benbenlaw.cloche.screen.ClocheMenu;
 import com.benbenlaw.core.block.entity.SyncableBlockEntity;
+import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,6 +24,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -68,11 +71,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
     public ItemStackHandler getItemStackHandler() {
         return itemHandler;
     }
-    public void setHandler(ItemStackHandler handler) {
-        for (int i = 0; i < handler.getSlots(); i++) {
-            this.itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
-        }
-    }
+
     private final ItemStackHandler itemHandler = new ItemStackHandler(18) {
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
@@ -87,6 +86,30 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
             sync();
         }
     };
+
+    private final IItemHandler clocheItemHandlerSide = new InputOutputItemHandler(itemHandler,
+            (i, stack) -> false,
+            this::isOutputSlot
+    );
+
+    private boolean isOutputSlot(int slot) {
+        for (int outputSlot : OUTPUT_SLOTS) {
+            if (slot == outputSlot) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public IItemHandler getItemHandlerCapability(Direction side) {
+        return clocheItemHandlerSide;
+    }
+
+    public void setHandler(ItemStackHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            this.itemHandler.setStackInSlot(i, handler.getStackInSlot(i));
+        }
+    }
 
     public ClocheBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ClocheBlockEntities.CLOCHE_BLOCK_ENTITY.get(), blockPos, blockState);

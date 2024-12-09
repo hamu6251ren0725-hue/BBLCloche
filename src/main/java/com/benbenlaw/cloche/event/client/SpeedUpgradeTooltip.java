@@ -28,7 +28,12 @@ public class SpeedUpgradeTooltip {
 
         ItemStack upgradeStack = event.getItemStack();
         List<Component> components = event.getToolTip();
-        Level level = Objects.requireNonNull(event.getEntity()).level();
+
+        if (event.getEntity() == null) {
+            return;
+        }
+
+        Level level = event.getEntity().level();
 
         List<RecipeHolder<SpeedUpgradeRecipe>> speedRecipe = level.getRecipeManager()
                 .getAllRecipesFor(SpeedUpgradeRecipe.Type.INSTANCE);
