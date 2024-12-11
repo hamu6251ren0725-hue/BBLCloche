@@ -30,20 +30,6 @@
         "count": 1,
         "id": "minecraft:nether_wart_block"
       }
-    },
-    {
-      "chance": 0.4,
-      "item": {
-        "count": 1,
-        "id": "minecraft:diamond"
-      }
-    },
-    {
-      "chance": 0.4,
-      "item": {
-        "count": 1,
-        "id": "minecraft:emerald"
-      }
     }
   ],
   "seed": {

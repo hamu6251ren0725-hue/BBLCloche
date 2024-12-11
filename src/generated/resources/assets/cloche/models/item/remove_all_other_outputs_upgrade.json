@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "cloche:item/remove_all_other_outputs_upgrade"
-  }
-}
