@@ -1,4 +1,17 @@
+
 Changelog BBL Cloche
+
+1.0.9
+Removed 8 output limit on the cloche
+
+1.0.8
+Fixed cloche not showing IColored blocks correctly
+
+1.0.7
+Fixed colors
+
+1.0.5
+JEI Now renders IColored items and ColorItems in JEI
 
 1.0.4
 Fixed crimson fungus producing diamonds and emeralds

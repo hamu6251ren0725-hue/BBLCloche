@@ -14,7 +14,7 @@ public class ClocheCreativeModTab {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Cloche.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> STRAINERS_TAB = CREATIVE_MODE_TABS.register("strainers", () -> CreativeModeTab.builder()
+    public static final Supplier<CreativeModeTab> CLOCHE_TAB = CREATIVE_MODE_TABS.register("cloche", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ClocheBlocks.CLOCHE.get().asItem().getDefaultInstance())
             .title(Component.translatable("itemGroup.cloche"))

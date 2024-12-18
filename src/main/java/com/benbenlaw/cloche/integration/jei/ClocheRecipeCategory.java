@@ -3,6 +3,9 @@ package com.benbenlaw.cloche.integration.jei;
 import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.block.ClocheBlocks;
 import com.benbenlaw.cloche.recipe.ClocheRecipe;
+import com.benbenlaw.core.block.colored.util.IColored;
+import com.benbenlaw.core.item.CoreDataComponents;
+import com.benbenlaw.core.item.colored.ColoredItem;
 import com.benbenlaw.core.recipe.ChanceResult;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -21,9 +24,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
@@ -71,13 +76,28 @@ public class ClocheRecipeCategory implements IRecipeCategory<ClocheRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ClocheRecipe recipe, IFocusGroup focusGroup) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredients(recipe.seed())
-                .addRichTooltipCallback((slotView, tooltip) -> {
-                    if (!recipe.dimension().isEmpty()) {
-                        tooltip.add(Component.translatable("jei.dimension.in")
-                                .append(Component.translatable(recipe.dimension()).withStyle(ChatFormatting.GOLD)));
-                    }
-                });
+
+        if (Block.byItem(recipe.seed().getItems()[0].getItem()) instanceof IColored || recipe.seed().getItems()[0].getItem() instanceof ColoredItem) {
+            String color = recipe.seed().getItems()[0].get(CoreDataComponents.COLOR);
+            ItemStack coloredStack = new ItemStack(recipe.seed().getItems()[0].getItem());
+            coloredStack.set(CoreDataComponents.COLOR, color);
+            builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addItemStack(coloredStack)
+                    .addRichTooltipCallback((slotView, tooltip) -> {
+                        if (!recipe.dimension().isEmpty()) {
+                            tooltip.add(Component.translatable("jei.dimension.in")
+                                    .append(Component.translatable(recipe.dimension()).withStyle(ChatFormatting.GOLD)));
+                        }
+                    });
+        } else {
+            builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredients(recipe.seed())
+                    .addRichTooltipCallback((slotView, tooltip) -> {
+                        if (!recipe.dimension().isEmpty()) {
+                            tooltip.add(Component.translatable("jei.dimension.in")
+                                    .append(Component.translatable(recipe.dimension()).withStyle(ChatFormatting.GOLD)));
+                        }
+                    });
+        }
+
 
         builder.addSlot(RecipeIngredientRole.INPUT, 2, 20).addIngredients(recipe.soil());
 

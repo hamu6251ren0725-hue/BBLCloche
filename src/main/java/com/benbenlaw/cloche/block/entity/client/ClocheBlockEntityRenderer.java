@@ -1,6 +1,11 @@
 package com.benbenlaw.cloche.block.entity.client;
 
 import com.benbenlaw.cloche.block.entity.ClocheBlockEntity;
+import com.benbenlaw.core.block.colored.ColoredBlock;
+import com.benbenlaw.core.block.colored.util.ColorMap;
+import com.benbenlaw.core.block.colored.util.IColored;
+import com.benbenlaw.core.config.ColorTintIndexConfig;
+import com.benbenlaw.core.item.CoreDataComponents;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
@@ -12,6 +17,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -47,8 +53,20 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
             pPoseStack.scale(0.9f, 0.2f, 0.9f);
             pPoseStack.translate(0.05f, 0.1f, 0.05f);
 
-            blockRenderDispatcher.renderSingleBlock(
-                    soilAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.cutout());
+            int tintColor = 0xFFFFFF;
+
+            if (blockItem.getBlock() instanceof ColoredBlock) {
+                String colorName = soilStack.get(CoreDataComponents.COLOR.get());
+                if (colorName != null) {
+
+                    DyeColor dyeColor = DyeColor.valueOf(colorName.toUpperCase());
+                    tintColor = ColorMap.getColorValue(dyeColor);
+
+                }
+            }
+
+            renderWithTint(blockRenderDispatcher, soilAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
+
 
             pPoseStack.popPose();  // Restore the PoseStack to the saved state
         }
@@ -59,6 +77,18 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
 
         if (seedStack.getItem() instanceof BlockItem blockItem) {
             seedAsBlock = blockItem.getBlock().defaultBlockState();
+
+            int tintColor = 0xFFFFFF;
+
+            if (blockItem.getBlock() instanceof IColored) {
+                String colorName = seedStack.get(CoreDataComponents.COLOR.get());
+                if (colorName != null) {
+
+                    DyeColor dyeColor = DyeColor.valueOf(colorName.toUpperCase());
+                    tintColor = ColorMap.getColorValue(dyeColor);
+
+                }
+            }
 
             if (seedAsBlock.getBlock() instanceof CropBlock ageCropBlock) {
                 int maxAge = ageCropBlock.getMaxAge();
@@ -82,8 +112,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                     pPoseStack.scale(0.8f, 0.8f, 0.8f);
                     pPoseStack.translate(0.1f, 0.25f, 0.1f);
 
-                    blockRenderDispatcher.renderSingleBlock(
-                            seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.cutout());
+                    renderWithTint(blockRenderDispatcher, seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 
                     pPoseStack.popPose();
                 }
@@ -100,8 +129,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                 pPoseStack.scale(0.8f, 0.8f, 0.8f);
                 pPoseStack.translate(0.1f, 0.25f, 0.1f);
 
-                blockRenderDispatcher.renderSingleBlock(
-                        seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.cutout());
+                renderWithTint(blockRenderDispatcher, seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 
                 pPoseStack.popPose();
 
@@ -123,8 +151,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                 pPoseStack.translate(0.0f, initialLowerOffset + verticalOffset, 0.0f);
                 pPoseStack.translate(-0.5f, -0.5f, -0.5f);
 
-                blockRenderDispatcher.renderSingleBlock(
-                        seedAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, ModelData.EMPTY, RenderType.cutout());
+                renderWithTint(blockRenderDispatcher, seedAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 
                 pPoseStack.popPose();
             }
@@ -135,5 +162,24 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
         int bLight = level.getBrightness(LightLayer.BLOCK, pos);
         int sLight = level.getBrightness(LightLayer.SKY, pos);
         return LightTexture.pack(bLight, sLight);
+    }
+
+    private void renderWithTint(BlockRenderDispatcher blockRenderDispatcher, BlockState state,
+                                PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, int tintColor) {
+        float r = (tintColor >> 16 & 0xFF) / 255.0F;
+        float g = (tintColor >> 8 & 0xFF) / 255.0F;
+        float b = (tintColor & 0xFF) / 255.0F;
+
+        blockRenderDispatcher.getModelRenderer().renderModel(
+                poseStack.last(),
+                bufferSource.getBuffer(RenderType.cutout()),
+                state,
+                blockRenderDispatcher.getBlockModel(state),
+                r, g, b,
+                packedLight,
+                packedOverlay,
+                ModelData.EMPTY,
+                null
+        );
     }
 }

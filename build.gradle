@@ -74,6 +74,10 @@ dependencies {
     compileOnly "curse.maven:jei-238222:5846880"
     runtimeOnly "curse.maven:jei-238222:5846880"
 
+    //Caveopolis 5.0.20
+    compileOnly "curse.maven:caveopolis-mod-639186:5982032"
+    runtimeOnly "curse.maven:caveopolis-mod-639186:5982032"
+
     //EMI
 
     compileOnly "curse.maven:emi-580555:5872513"

@@ -125,11 +125,14 @@ public record ClocheRecipe (
                                 Codec.STRING.optionalFieldOf("dimension", "all").forGetter(ClocheRecipe::dimension),
                                 Codec.INT.fieldOf("duration").forGetter(ClocheRecipe::duration),
                                 Codec.list(ChanceResult.CODEC).fieldOf("results").flatXmap(chanceResults -> {
-                                        if (chanceResults.size() > 8) {
+                                        /*
+                                        if (chanceResults.size() > 12) {
                                                 return DataResult.error(
-                                                        () -> "Too many results for cutting recipe! The maximum quantity of unique results is "
-                                                                + 8);
+                                                        () -> "Too many results for cloche recipe! The maximum quantity of unique results is "
+                                                                + 12);
                                         }
+
+                                         */
                                         NonNullList<ChanceResult> nonNullList = NonNullList.create();
                                         nonNullList.addAll(chanceResults);
                                         return DataResult.success(nonNullList);

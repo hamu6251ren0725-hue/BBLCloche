@@ -40,14 +40,6 @@ public class Cloche{
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::commonSetup);
 
-
-    //    FlightBlocksItems.ITEMS.register(eventBus);
-    //    FlightBlocksBlocks.BLOCKS.register(eventBus);
-    //    FlightBlockEntities.BLOCK_ENTITIES.register(eventBus);
-
-    //    modContainer.registerConfig(ModConfig.Type.STARTUP, StartupConfig.SPEC, "bbl/flightblocks/startup.toml");
-
-    //    eventBus.addListener(this::addItemToCreativeTab);
     }
 
     private void addItemToCreativeTab(BuildCreativeModeTabContentsEvent event) {
