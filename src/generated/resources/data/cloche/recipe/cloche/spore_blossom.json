@@ -6,14 +6,14 @@
     {
       "item": {
         "count": 1,
-        "id": "minecraft:vine"
+        "id": "minecraft:spore_blossom"
       }
     }
   ],
   "seed": {
-    "item": "minecraft:vine"
+    "item": "minecraft:spore_blossom"
   },
   "soil": {
-    "tag": "minecraft:jungle_logs"
+    "tag": "minecraft:dirt"
   }
 }

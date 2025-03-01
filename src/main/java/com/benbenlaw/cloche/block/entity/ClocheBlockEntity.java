@@ -74,7 +74,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(18) {
         @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
+        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             if (slot == SEED_SLOT || slot == SOIL_SLOT || slot == CATALYST_SLOT || slot == UPGRADE_SLOT_1 || slot == UPGRADE_SLOT_2 || slot == UPGRADE_SLOT_3) {
                 return 1;
             }
@@ -237,6 +237,8 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         }
     }
 
+
+
     public boolean correctDimension(ClocheRecipe recipe) {
         assert level != null;
         String clocheDimension = String.valueOf(level.dimension().location());
@@ -256,7 +258,7 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         if (hasUpgrade1 || hasUpgrade2 || hasUpgrade3) {
 
             if (!recipe.shearsResult().isEmpty()) {
-                leavesBlock = recipe.shearsResult();
+                leavesBlock = recipe.shearsResult().copy();
             }
         }
         return leavesBlock;

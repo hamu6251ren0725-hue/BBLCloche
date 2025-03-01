@@ -6,14 +6,14 @@
     {
       "item": {
         "count": 1,
-        "id": "minecraft:vine"
+        "id": "minecraft:sea_pickle"
       }
     }
   ],
   "seed": {
-    "item": "minecraft:vine"
+    "item": "minecraft:sea_pickle"
   },
   "soil": {
-    "tag": "minecraft:jungle_logs"
+    "tag": "c:buckets/water"
   }
 }

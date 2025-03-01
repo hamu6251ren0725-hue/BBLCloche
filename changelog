@@ -1,6 +1,17 @@
 
 Changelog BBL Cloche
 
+1.1.0
+Added "cloche:upgrades" tag for upgrades
+Added wiki on github
+Improved data gen added createSingleItemRecipe used for single item recipes like flowers and carrots that only have one output
+Added a bunch of new recipes for the cloche including flowers, water flowers and glow lichen
+Seed, Soil and Catalysts slots are now locked to only accept items from all the cloche recipes, this is dynamic and will change based on the recipes
+    Improves slot interaction for players and improves shift clicking
+
+1.0.10
+Fixed shears upgrade only working on first craft
+
 1.0.9
 Removed 8 output limit on the cloche
 

@@ -6,14 +6,14 @@
     {
       "item": {
         "count": 1,
-        "id": "minecraft:vine"
+        "id": "minecraft:white_tulip"
       }
     }
   ],
   "seed": {
-    "item": "minecraft:vine"
+    "item": "minecraft:white_tulip"
   },
   "soil": {
-    "tag": "minecraft:jungle_logs"
+    "tag": "minecraft:dirt"
   }
 }

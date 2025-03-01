@@ -3,6 +3,7 @@ package com.benbenlaw.cloche.screen;
 import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.block.ClocheBlock;
 import com.benbenlaw.cloche.networking.OnOffButtonPayload;
+import com.benbenlaw.cloche.util.ClocheTags;
 import com.benbenlaw.core.screen.util.CoreButtons;
 import com.benbenlaw.core.screen.util.TooltipArea;
 import com.benbenlaw.core.util.MouseUtil;

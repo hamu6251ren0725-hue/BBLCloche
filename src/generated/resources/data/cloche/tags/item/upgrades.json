@@ -1,0 +1,16 @@
+{
+  "values": [
+    "cloche:no_seeds_upgrade",
+    "cloche:end_upgrade",
+    "cloche:nether_upgrade",
+    "cloche:overworld_upgrade",
+    "cloche:shears_upgrade",
+    "cloche:main_output_upgrade",
+    "cloche:percentage_speed_upgrade_1",
+    "cloche:percentage_speed_upgrade_2",
+    "cloche:percentage_speed_upgrade_3",
+    "cloche:fixed_speed_upgrade_1",
+    "cloche:fixed_speed_upgrade_2",
+    "cloche:fixed_speed_upgrade_3"
+  ]
+}

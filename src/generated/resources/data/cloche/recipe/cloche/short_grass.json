@@ -6,14 +6,14 @@
     {
       "item": {
         "count": 1,
-        "id": "minecraft:vine"
+        "id": "minecraft:short_grass"
       }
     }
   ],
   "seed": {
-    "item": "minecraft:vine"
+    "item": "minecraft:short_grass"
   },
   "soil": {
-    "tag": "minecraft:jungle_logs"
+    "tag": "minecraft:dirt"
   }
 }

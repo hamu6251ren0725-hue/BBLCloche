@@ -22,8 +22,10 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ClocheRecipesData extends RecipeProvider {
@@ -224,11 +226,6 @@ public class ClocheRecipesData extends RecipeProvider {
                         null, 1200, ResultLists.POTATO_RESULTS, null)
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/potato"));
 
-        // Cloche Carrot
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.CARROT), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.CARROT_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/carrot"));
-
         // Cloche Beetroot
         ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.BEETROOT_SEEDS), Ingredient.of(ItemTags.DIRT), null,
                         null, 1200, ResultLists.BEETROOT_RESULTS, null)
@@ -244,65 +241,10 @@ public class ClocheRecipesData extends RecipeProvider {
                         null, 1200, ResultLists.PUMPKIN_RESULTS, null)
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/pumpkin"));
 
-        // Cloche Sugar Cane
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.SUGAR_CANE), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.SUGAR_CANE_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/sugar_cane"));
-
-        // Cloche Cactus
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.CACTUS), Ingredient.of(ItemTags.SAND), null,
-                        null, 1200, ResultLists.CACTUS_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/cactus"));
-
-        // Cloche Sweet Berry
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.SWEET_BERRIES), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.SWEET_BERRY_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/sweet_berry"));
-
-        // Cloche Nether Wart
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.NETHER_WART), Ingredient.of(Items.SOUL_SAND), null,
-                        "minecraft:the_nether", 1200, ResultLists.NETHER_WART_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/nether_wart"));
-
-        // Cloche Cocoa Beans
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.COCOA_BEANS), Ingredient.of(ItemTags.JUNGLE_LOGS), null,
-                        null, 1200, ResultLists.COCOA_BEANS_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/cocoa_beans"));
-
         // Cloche Chorus Fruit
         ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.CHORUS_FRUIT), Ingredient.of(Items.END_STONE), null,
                         "minecraft:end", 1200, ResultLists.CHORUS_FRUIT_RESULTS, null)
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/chorus_fruit"));
-
-        // Cloche Bamboo
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.BAMBOO), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.BAMBOO_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/bamboo"));
-
-        // Cloche Kelp
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.KELP), Ingredient.of(Tags.Items.BUCKETS_WATER), null,
-                        null, 1200, ResultLists.KELP_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/kelp"));
-
-        // Cloche Brown Mushroom
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.BROWN_MUSHROOM), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.BROWN_MUSHROOM_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/brown_mushroom"));
-
-        // Cloche Red Mushroom
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.RED_MUSHROOM), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.RED_MUSHROOM_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/red_mushroom"));
-
-        // Cloche Lily Pad
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.LILY_PAD), Ingredient.of(Tags.Items.BUCKETS_WATER), null,
-                        null, 1200, ResultLists.LILY_PAD_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/lily_pad"));
-
-        // Cloche Vine
-        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.VINE), Ingredient.of(ItemTags.DIRT), null,
-                        null, 1200, ResultLists.VINE_RESULTS, null)
-                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/vine"));
 
         // Oak Sapling
         ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.OAK_SAPLING), Ingredient.of(ItemTags.DIRT), null,
@@ -354,33 +296,54 @@ public class ClocheRecipesData extends RecipeProvider {
                         "minecraft:the_nether", 1200, ResultLists.WARPED_FUNGUS_RESULTS, null)
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/warped_fungus"));
 
+        // Single Item Recipes
+        createSingleItemRecipe(new ItemStack(Items.DANDELION), Ingredient.of(ItemTags.DIRT), 1200, "dandelion", consumer);
+        createSingleItemRecipe(new ItemStack(Items.POPPY), Ingredient.of(ItemTags.DIRT), 1200, "poppy", consumer);
+        createSingleItemRecipe(new ItemStack(Items.BLUE_ORCHID), Ingredient.of(ItemTags.DIRT), 1200, "blue_orchid", consumer);
+        createSingleItemRecipe(new ItemStack(Items.ALLIUM), Ingredient.of(ItemTags.DIRT), 1200, "allium", consumer);
+        createSingleItemRecipe(new ItemStack(Items.AZURE_BLUET), Ingredient.of(ItemTags.DIRT), 1200, "azure_bluet", consumer);
+        createSingleItemRecipe(new ItemStack(Items.RED_TULIP), Ingredient.of(ItemTags.DIRT), 1200, "red_tulip", consumer);
+        createSingleItemRecipe(new ItemStack(Items.ORANGE_TULIP), Ingredient.of(ItemTags.DIRT), 1200, "orange_tulip", consumer);
+        createSingleItemRecipe(new ItemStack(Items.WHITE_TULIP), Ingredient.of(ItemTags.DIRT), 1200, "white_tulip", consumer);
+        createSingleItemRecipe(new ItemStack(Items.PINK_TULIP), Ingredient.of(ItemTags.DIRT), 1200, "pink_tulip", consumer);
+        createSingleItemRecipe(new ItemStack(Items.OXEYE_DAISY), Ingredient.of(ItemTags.DIRT), 1200, "oxeye_daisy", consumer);
+        createSingleItemRecipe(new ItemStack(Items.CORNFLOWER), Ingredient.of(ItemTags.DIRT), 1200, "cornflower", consumer);
+        createSingleItemRecipe(new ItemStack(Items.LILY_OF_THE_VALLEY), Ingredient.of(ItemTags.DIRT), 1200, "lily_of_the_valley", consumer);
+        createSingleItemRecipe(new ItemStack(Items.WITHER_ROSE), Ingredient.of(ItemTags.DIRT), 1200, "wither_rose", consumer);
+        createSingleItemRecipe(new ItemStack(Items.PINK_PETALS), Ingredient.of(ItemTags.DIRT), 1200, "pink_petals", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SPORE_BLOSSOM), Ingredient.of(ItemTags.DIRT), 1200, "spore_blossom", consumer);
+        createSingleItemRecipe(new ItemStack(Items.FERN), Ingredient.of(ItemTags.DIRT), 1200, "fern", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SHORT_GRASS), Ingredient.of(ItemTags.DIRT), 1200, "short_grass", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SUNFLOWER), Ingredient.of(ItemTags.DIRT), 1200, "sunflower", consumer);
+        createSingleItemRecipe(new ItemStack(Items.LILAC), Ingredient.of(ItemTags.DIRT), 1200, "lilac", consumer);
+        createSingleItemRecipe(new ItemStack(Items.ROSE_BUSH), Ingredient.of(ItemTags.DIRT), 1200, "rose_bush", consumer);
+        createSingleItemRecipe(new ItemStack(Items.PEONY), Ingredient.of(ItemTags.DIRT), 1200, "peony", consumer);
+        createSingleItemRecipe(new ItemStack(Items.GLOW_LICHEN), Ingredient.of(Tags.Items.STONES), 1200, "glow_lichen", consumer);
+        createSingleItemRecipe(new ItemStack(Items.LILY_PAD), Ingredient.of(Tags.Items.BUCKETS_WATER), 1200, "lily_pad", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SEAGRASS), Ingredient.of(Tags.Items.BUCKETS_WATER), 1200, "seagrass", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SEA_PICKLE), Ingredient.of(Tags.Items.BUCKETS_WATER), 1200, "sea_pickle", consumer);
+        createSingleItemRecipe(new ItemStack(Items.KELP), Ingredient.of(Tags.Items.BUCKETS_WATER), 1200, "kelp", consumer);
+        createSingleItemRecipe(new ItemStack(Items.VINE), Ingredient.of(ItemTags.JUNGLE_LOGS), 1200, "vine", consumer);
+        createSingleItemRecipe(new ItemStack(Items.COCOA_BEANS), Ingredient.of(ItemTags.JUNGLE_LOGS), 1200, "cocoa_beans", consumer);
+        createSingleItemRecipe(new ItemStack(Items.BAMBOO), Ingredient.of(ItemTags.DIRT), 1200, "bamboo", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SUGAR_CANE), Ingredient.of(ItemTags.DIRT), 1200, "sugar_cane", consumer);
+        createSingleItemRecipe(new ItemStack(Items.CACTUS), Ingredient.of(ItemTags.SAND), 1200, "cactus", consumer);
+        createSingleItemRecipe(new ItemStack(Items.SWEET_BERRIES), Ingredient.of(ItemTags.DIRT), 1200, "sweet_berries", consumer);
+        createSingleItemRecipe(new ItemStack(Items.NETHER_WART), Ingredient.of(Items.SOUL_SAND), 1200, "nether_wart", consumer);
+        createSingleItemRecipe(new ItemStack(Items.CARROT), Ingredient.of(ItemTags.DIRT), 1200, "carrot", consumer);
+        createSingleItemRecipe(new ItemStack(Items.BROWN_MUSHROOM), Ingredient.of(ItemTags.DIRT), 1200, "brown_mushroom", consumer);
+        createSingleItemRecipe(new ItemStack(Items.RED_MUSHROOM), Ingredient.of(ItemTags.DIRT), 1200, "red_mushroom", consumer);
+            }
 
 
+    public void createSingleItemRecipe(ItemStack item, Ingredient soil, int duration, String name, RecipeOutput consumer) {
 
+        NonNullList<ChanceResult> SINGLE_ITEM_RESULTS = NonNullList.create();
+        SINGLE_ITEM_RESULTS.add(new ChanceResult(new ItemStack(item.getItem()), 1.0f));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(item), soil, null,
+                        null, duration, SINGLE_ITEM_RESULTS, null)
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/" + name));
 
     }
-
 }

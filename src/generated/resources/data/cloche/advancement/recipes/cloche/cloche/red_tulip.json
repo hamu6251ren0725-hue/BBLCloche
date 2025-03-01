@@ -2,7 +2,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cloche:cloche/sweet_berry"
+        "recipe": "cloche:cloche/red_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -14,7 +14,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cloche:cloche/sweet_berry"
+      "cloche:cloche/red_tulip"
     ]
   },
   "sends_telemetry_event": true
