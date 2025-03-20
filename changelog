@@ -1,6 +1,24 @@
 
 Changelog BBL Cloche
 
+So when you are doing cloche work, can you maybe change the rendering of the soil block so only render a bit of the block height wise, so that it doesn't look so squashed? ... It's not really needed, but it would look much better. ^^
+
+1.2.0
+Tweaked speed based upgrades, putting in upgrades that reduce the time below 0 ticks (example 2 percentage 50% upgrades) will no longer round to 1 tick,
+    instead cloche will error and explain that the upgrades are reducing the time below 0 ticks and will not be applied
+Buffed all speed upgrades;
+    Fixed Speed 1 100 -> 200
+    Fixed Speed 2 200 -> 400
+    Fixed Speed 3 300 -> 600
+    Percentage 1 5% -> 20%
+    Percentage 2 10% -> 40%
+    Percentage 3 15% -> 60%
+Added No Other Drops Upgrade that prevents any other drops from being produced apart from the main output
+
+1.1.1
+Cloche now caches its current recipe to prevent needless additional checking
+Cloche syncing now only happens when the recipe changes or progresses
+
 1.1.0
 Added "cloche:upgrades" tag for upgrades
 Added wiki on github

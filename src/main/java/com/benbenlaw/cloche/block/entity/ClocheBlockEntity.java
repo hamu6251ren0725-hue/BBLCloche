@@ -50,6 +50,12 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
     public static final int UPGRADE_SLOT_3 = 5;
     public static final int[] OUTPUT_SLOTS = {6,7,8,9,10,11,12,13,14,15,16,17};
 
+    private Optional<RecipeHolder<ClocheRecipe>> cachedRecipe = Optional.empty();
+    private ItemStack lastSeed = ItemStack.EMPTY;
+    private ItemStack lastSoil = ItemStack.EMPTY;
+    private ItemStack lastCatalyst = ItemStack.EMPTY;
+
+
     public ItemStack getSeed() {
         return itemHandler.getStackInSlot(SEED_SLOT);
     }
@@ -84,6 +90,9 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         protected void onContentsChanged(int slot) {
             setChanged();
             sync();
+            if (slot == SEED_SLOT || slot == SOIL_SLOT || slot == CATALYST_SLOT) {
+                cachedRecipe = Optional.empty();
+            }
         }
     };
 
@@ -173,40 +182,59 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public void tick() {
+    private boolean inputsChanged() {
+        return !ItemStack.matches(getSeed(), lastSeed) ||
+                !ItemStack.matches(getSoil(), lastSoil) ||
+                !ItemStack.matches(getCatalyst(), lastCatalyst);
+    }
 
-        assert level != null;
-        if (!level.isClientSide()) {
-
-            //System.out.println(errorMessage);
-
+    private void updateCachedRecipe() {
+        if (inputsChanged()) {
             RecipeInput inventory = new RecipeInput() {
                 @Override
                 public @NotNull ItemStack getItem(int index) {
                     return itemHandler.getStackInSlot(index);
                 }
-
                 @Override
                 public int size() {
                     return itemHandler.getSlots();
                 }
             };
 
-            Optional<RecipeHolder<ClocheRecipe>> match = level.getRecipeManager()
-                    .getRecipeFor(ClocheRecipe.Type.INSTANCE, inventory, level);
+            cachedRecipe = level.getRecipeManager().getRecipeFor(ClocheRecipe.Type.INSTANCE, inventory, level);
+
+            // Update last inputs
+            lastSeed = getSeed().copy();
+            lastSoil = getSoil().copy();
+            lastCatalyst = getCatalyst().copy();
+        }
+    }
+
+    public void tick() {
+
+        assert level != null;
+        if (!level.isClientSide()) {
+
+            updateCachedRecipe();
+            Optional<RecipeHolder<ClocheRecipe>> match = cachedRecipe;
+            sync();
 
             int recipeMaxDuration = 1000000;
             if (match.isPresent()) {
                 recipeMaxDuration = match.get().value().getDuration();
             }
 
-            sync();
-
             if (this.getBlockState().getValue(POWERED)) {
 
                 if (match.isPresent()) {
 
                     maxProgress = speedUpgradeLogic.getNewDuration(recipeMaxDuration, itemHandler, level);
+
+                    if (maxProgress == Integer.MAX_VALUE) {
+                        errorMessage = "block.cloche.error.speed_upgrade";
+                        resetProgress();
+                        return;
+                    }
 
                     ClocheRecipe currentRecipe = match.get().value();
                     if (correctDimension(currentRecipe)) {
@@ -323,6 +351,15 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         return seed;
     }
 
+    public boolean hasNoOtherDropsUpgrade() {
+
+        boolean hasUpgrade1 = itemHandler.getStackInSlot(UPGRADE_SLOT_1).is(ClocheItems.NO_OTHER_DROPS_UPGRADE);
+        boolean hasUpgrade2 = itemHandler.getStackInSlot(UPGRADE_SLOT_2).is(ClocheItems.NO_OTHER_DROPS_UPGRADE);
+        boolean hasUpgrade3 = itemHandler.getStackInSlot(UPGRADE_SLOT_3).is(ClocheItems.NO_OTHER_DROPS_UPGRADE);
+
+        return hasUpgrade1 || hasUpgrade2 || hasUpgrade3;
+    }
+
     public int getMainOutputUpgradeCount() {
         int mainOutputUpgradeCount = 0;
         if (itemHandler.getStackInSlot(UPGRADE_SLOT_1).is(ClocheItems.MAIN_OUTPUT_UPGRADE)) {
@@ -359,6 +396,12 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
             // No Seed Upgrade, remove seed from output unless there is only the "seed" item in the output list
             if (!seedToRemove.isEmpty() && ItemStack.isSameItem(seedToRemove, result) && results.size() > 1) {
                 continue;
+            }
+            // No Other Drops Upgrade, remove all other drops from output
+            if (hasNoOtherDropsUpgrade()) {
+                ItemStack mainOutput = results.getFirst().copy();
+                results.clear();
+                results.add(mainOutput);
             }
 
             for (int outputSlot : OUTPUT_SLOTS) {

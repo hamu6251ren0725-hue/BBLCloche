@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "cloche:percentage_speed_upgrade_2"
   },
-  "modifier": 10,
+  "modifier": 40,
   "modifier_type": "percentage"
 }

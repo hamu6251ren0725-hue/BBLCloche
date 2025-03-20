@@ -22,6 +22,8 @@ public class ClocheItems {
             () -> new UpgradeItem(new Item.Properties().stacksTo(1), "tooltip.cloche.upgrade.main_output_upgrade"));
     public static final DeferredItem<Item> SHEARS_UPGRADE = ITEMS.register("shears_upgrade",
             () -> new UpgradeItem(new Item.Properties().stacksTo(1), "tooltip.cloche.upgrade.shears_upgrade"));
+    public static final DeferredItem<Item> NO_OTHER_DROPS_UPGRADE = ITEMS.register("no_other_drops_upgrade",
+            () -> new UpgradeItem(new Item.Properties().stacksTo(1), "tooltip.cloche.upgrade.no_other_drops_upgrade"));
 
     //Speed Upgrades
     public static final DeferredItem<Item> FIXED_SPEED_UPGRADE_1 = ITEMS.register("fixed_speed_upgrade_1",

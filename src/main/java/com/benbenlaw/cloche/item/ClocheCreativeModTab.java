@@ -23,6 +23,7 @@ public class ClocheCreativeModTab {
                 output.accept(ClocheBlocks.CLOCHE.get());
 
                 output.accept(ClocheItems.NO_SEEDS_UPGRADE.get());
+                output.accept(ClocheItems.NO_OTHER_DROPS_UPGRADE.get());
                 output.accept(ClocheItems.END_UPGRADE.get());
                 output.accept(ClocheItems.NETHER_UPGRADE.get());
                 output.accept(ClocheItems.OVERWORLD_UPGRADE.get());

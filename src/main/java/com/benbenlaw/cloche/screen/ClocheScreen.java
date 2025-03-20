@@ -105,7 +105,8 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     @Nullable
     private void renderTickRate(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 20, -17, 19, 18)) {
-            guiGraphics.renderTooltip(this.font, Component.literal(this.menu.blockEntity.progress + "/" + this.menu.blockEntity.maxProgress), mouseX, mouseY);
+            guiGraphics.renderTooltip(this.font, Component.literal(this.menu.blockEntity.progress + "/" +
+                    this.menu.blockEntity.maxProgress), mouseX, mouseY);
         }
     }
 

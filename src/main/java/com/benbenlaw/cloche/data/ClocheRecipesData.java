@@ -13,15 +13,13 @@ import com.benbenlaw.core.recipe.ChanceResult;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
@@ -169,6 +167,13 @@ public class ClocheRecipesData extends RecipeProvider {
                 .unlockedBy("has_item", has(CoreItems.UPGRADE_BASE))
                 .save(consumer);
 
+        // No Other Drops Upgrade
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ClocheItems.NO_OTHER_DROPS_UPGRADE.get())
+                .requires(ClocheItems.NO_SEEDS_UPGRADE.get())
+                .requires(ClocheItems.MAIN_OUTPUT_UPGRADE.get())
+                .unlockedBy("has_item", has(ClocheItems.NO_SEEDS_UPGRADE.get()))
+                .save(consumer);
+
         // Cloche - Crafting Recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ClocheBlocks.CLOCHE.get())
                 .pattern("III")
@@ -182,23 +187,23 @@ public class ClocheRecipesData extends RecipeProvider {
                 .save(consumer);
 
         // Upgrades - Speed
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_1), "fixed", 100)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_1), "fixed", 200)
                 .unlockedBy("has_item", has(ClocheItems.FIXED_SPEED_UPGRADE_1))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/fixed_speed_1"));
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_2), "fixed", 200)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_2), "fixed", 400)
                 .unlockedBy("has_item", has(ClocheItems.FIXED_SPEED_UPGRADE_2))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/fixed_speed_2"));
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_3), "fixed", 300)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.FIXED_SPEED_UPGRADE_3), "fixed", 600)
                 .unlockedBy("has_item", has(ClocheItems.FIXED_SPEED_UPGRADE_3))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/fixed_speed_3"));
 
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_1), "percentage", 5)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_1), "percentage", 20)
                 .unlockedBy("has_item", has(ClocheItems.PERCENTAGE_SPEED_UPGRADE_1))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/percentage_speed_1"));
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_2), "percentage", 10)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_2), "percentage", 40)
                 .unlockedBy("has_item", has(ClocheItems.PERCENTAGE_SPEED_UPGRADE_2))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/percentage_speed_2"));
-        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_3), "percentage", 15)
+        SpeedRecipeProvider.SpeedUpgradeRecipeBuilder(Ingredient.of(ClocheItems.PERCENTAGE_SPEED_UPGRADE_3), "percentage", 60)
                 .unlockedBy("has_item", has(ClocheItems.PERCENTAGE_SPEED_UPGRADE_3))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/percentage_speed_3"));
 

@@ -22,6 +22,7 @@ public class ClocheItemModelProvider extends ItemModelProvider {
         simpleItem(ClocheItems.NETHER_UPGRADE);
         simpleItem(ClocheItems.END_UPGRADE);
         simpleItem(ClocheItems.NO_SEEDS_UPGRADE);
+        simpleItem(ClocheItems.NO_OTHER_DROPS_UPGRADE);
         simpleItem(ClocheItems.MAIN_OUTPUT_UPGRADE);
         simpleItem(ClocheItems.SHEARS_UPGRADE);
 

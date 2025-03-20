@@ -4,6 +4,7 @@
   "block.cloche.error.no_recipe": "No recipe found!",
   "block.cloche.error.not_on": "Not On!",
   "block.cloche.error.wrong_dimension": "Wrong Dimension!",
+  "block.cloche.error.speed_upgrade": "Your Upgrades are making this too fast!",
   "block.cloche.gui.seed_slot": "Seed Slot",
   "block.cloche.gui.soil_slot": "Soil Slot",
   "block.cloche.gui.catalyst_slot": "Catalyst Slot",
@@ -18,6 +19,7 @@
   "item.cloche.nether_upgrade": "Nether Upgrade",
   "item.cloche.end_upgrade": "End Upgrade",
   "item.cloche.no_seeds_upgrade": "No Seeds Upgrade",
+  "item.cloche.no_other_drops_upgrade": "No Other Drops Upgrade",
   "item.cloche.main_output_upgrade": "Main Output Upgrade",
   "item.cloche.shears_upgrade": "Shears Upgrade",
   "item.cloche.fixed_speed_upgrade_1": "Fixed Speed Upgrade 1",
@@ -28,15 +30,12 @@
   "item.cloche.percentage_speed_upgrade_3": "Percentage Speed Upgrade 3",
 
   "tooltip.cloche.upgrade.dimension": "Allows plants to grow in the Cloche from: %s",
-  "tooltip.cloche.upgrade.fixed_speed_upgrade": "Reduces the duration of a recipe by %s ticks. Percentage effect happen before fixed effects",
-  "tooltip.cloche.upgrade.percentage_speed_upgrade": "Reduces the duration of a recipe by %s%%. Percentage effect happen before fixed effects",
-
-
+  "tooltip.cloche.upgrade.fixed_speed_upgrade": "Reduces the duration of a recipe by %s ticks. Percentage effects happen before fixed effects",
+  "tooltip.cloche.upgrade.percentage_speed_upgrade": "Reduces the duration of a recipe by %s%%. Percentage effects happen before fixed effects",
   "tooltip.cloche.upgrade.no_seeds": "Removes the Seeds from the results",
   "tooltip.cloche.upgrade.main_output_upgrade": "Increases the main output amount by 1 per upgrade",
   "tooltip.cloche.upgrade.shears_upgrade": "Allows the Shears Output of the recipe to be obtained",
-
-
+  "tooltip.cloche.upgrade.no_other_drops_upgrade": "Removes ALL drops except the main output",
 
   "jei.dimension.in": "In Dimension: ",
   "all": "All",
@@ -45,6 +44,4 @@
   "minecraft:end": "The End",
 
   "itemGroup.cloche": "BBL Cloche"
-
-
 }

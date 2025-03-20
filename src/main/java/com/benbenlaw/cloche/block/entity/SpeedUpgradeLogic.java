@@ -20,8 +20,7 @@ public class SpeedUpgradeLogic {
         List<RecipeHolder<SpeedUpgradeRecipe>> speedRecipe = level.getRecipeManager()
                 .getAllRecipesFor(SpeedUpgradeRecipe.Type.INSTANCE);
 
-        int baseDuration = recipeStartAmount;
-        double adjustedDuration = baseDuration;
+        double adjustedDuration = recipeStartAmount;
 
         ItemStack upgradeSlot1 = itemHandler.getStackInSlot(ClocheBlockEntity.UPGRADE_SLOT_1);
         ItemStack upgradeSlot2 = itemHandler.getStackInSlot(ClocheBlockEntity.UPGRADE_SLOT_2);
@@ -51,9 +50,9 @@ public class SpeedUpgradeLogic {
             }
         }
 
-        adjustedDuration -= (baseDuration * (totalPercentageReduction / 100.0));
+        adjustedDuration -= (recipeStartAmount * (totalPercentageReduction / 100.0));
         adjustedDuration -= totalFixedReduction;
 
-        return (int) Math.max(1, Math.round(adjustedDuration));
+        return adjustedDuration < 1 ? Integer.MAX_VALUE : (int) Math.round(adjustedDuration);
     }
 }

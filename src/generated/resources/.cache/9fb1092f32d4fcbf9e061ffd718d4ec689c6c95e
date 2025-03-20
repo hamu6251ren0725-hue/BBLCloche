@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-01T12:19:12.953671	Recipes
+// 1.21.1	2025-03-17T11:28:31.0944468	Recipes
 a9245b19bbdb4fd634940c3741098d4db5889299 data/cloche/advancement/recipes/cloche/cloche/acacia_sapling.json
 b9f4dee43263023716db138f4b2134d2b9b4b178 data/cloche/advancement/recipes/cloche/cloche/allium.json
 d8a813b74f2506ccede6b6021e5b2a889b4482f0 data/cloche/advancement/recipes/cloche/cloche/azure_bluet.json
@@ -58,6 +58,7 @@ dde02528f24297d2e82f310110ff80dc3e9fe14b data/cloche/advancement/recipes/misc/fi
 e0f6faf2afd40a0691246b223a0b0f7782aa4f0a data/cloche/advancement/recipes/misc/fixed_speed_upgrade_3.json
 f1d0aba8a437caa0aae1c853bfb94eb4b174a8cb data/cloche/advancement/recipes/misc/main_output_upgrade.json
 3af60b87ab6a406ed396cfdd0534c1f867b78e04 data/cloche/advancement/recipes/misc/nether_upgrade.json
+5dceae298958da46e2fd42fa5de05a2295db0eb6 data/cloche/advancement/recipes/misc/no_other_drops_upgrade.json
 ea321a9854f2857dc4becc0807491ac968f3b38c data/cloche/advancement/recipes/misc/no_seeds_upgrade.json
 a243f0bfc84d3670924ae97a64cc3b2d19f29926 data/cloche/advancement/recipes/misc/overworld_upgrade.json
 1ade0f8a5e19782a5d90ff3ecd6675900dea740c data/cloche/advancement/recipes/misc/percentage_speed_upgrade_1.json
@@ -132,6 +133,7 @@ dc1950b0e6cf48855311cfc85ca5b03d725dcaee data/cloche/recipe/fixed_speed_upgrade_
 9b72c7eb77ff32f489670d44c7aa589511b2beea data/cloche/recipe/fixed_speed_upgrade_3.json
 e46cca78afc617ff77590531306bdef9cf89c8ad data/cloche/recipe/main_output_upgrade.json
 5d858cafd2fd8fc6ed5b5ddffd76cfb2afe2ea11 data/cloche/recipe/nether_upgrade.json
+b783ef7c516c310b1373cccd0dcfd41a11afcdf3 data/cloche/recipe/no_other_drops_upgrade.json
 56c7eee97789f34655747c381c6cbfa89bb459c1 data/cloche/recipe/no_seeds_upgrade.json
 4b56a3d4859e02fe5ad9aba896c572e268bed456 data/cloche/recipe/overworld_upgrade.json
 4147d676afba53e9f7764c987cd7169546a81d7f data/cloche/recipe/percentage_speed_upgrade_1.json
@@ -139,11 +141,11 @@ e46cca78afc617ff77590531306bdef9cf89c8ad data/cloche/recipe/main_output_upgrade.
 b4695a92005ba89f897dd880d7c3c805ee9a4efb data/cloche/recipe/percentage_speed_upgrade_3.json
 095c230d450c1d728137c97c6e2ce5fa496d2b42 data/cloche/recipe/shears_upgrade.json
 bd620c0bfd330df171fad6822f8b2d506f9008a8 data/cloche/recipe/upgrades/end.json
-3720482b745908ef05edb35653ba1ce08e99dafc data/cloche/recipe/upgrades/fixed_speed_1.json
-e4de4506691715610c48b7e30c07a3f1baf0f398 data/cloche/recipe/upgrades/fixed_speed_2.json
-393322063914319323e0f8cdaa105d926bfba1bd data/cloche/recipe/upgrades/fixed_speed_3.json
+b035906eada0e6a2337d0dc1468d1daca2973290 data/cloche/recipe/upgrades/fixed_speed_1.json
+c969116d646afec28468e9055e0859ead5c2f5a8 data/cloche/recipe/upgrades/fixed_speed_2.json
+f87359cec6cba8a507f1cfde6704edfb1cd26041 data/cloche/recipe/upgrades/fixed_speed_3.json
 efdf8bf8ca20dbcd0761c259075b910582940f25 data/cloche/recipe/upgrades/nether.json
 e96e32eca5a0a87a61b17072902b4099cbd47543 data/cloche/recipe/upgrades/overworld.json
-f486ad7065d143363f90fdd983b68d5f2ab9bdfe data/cloche/recipe/upgrades/percentage_speed_1.json
-cbc6afd61d12ce78896c61222a17957276839a1b data/cloche/recipe/upgrades/percentage_speed_2.json
-e390927182c3d690c795ca56ec4e00ad3d416cca data/cloche/recipe/upgrades/percentage_speed_3.json
+495a26ffe9f16d6b2497698e5e543a63e23c0e5d data/cloche/recipe/upgrades/percentage_speed_1.json
+77573cecb3a6994cb5ed863e54dc601c08e6b04c data/cloche/recipe/upgrades/percentage_speed_2.json
+c8bb1f6c986d9c563ba30b960ad2fdbc9155c45d data/cloche/recipe/upgrades/percentage_speed_3.json

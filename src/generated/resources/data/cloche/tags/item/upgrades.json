@@ -1,6 +1,7 @@
 {
   "values": [
     "cloche:no_seeds_upgrade",
+    "cloche:no_other_drops_upgrade",
     "cloche:end_upgrade",
     "cloche:nether_upgrade",
     "cloche:overworld_upgrade",

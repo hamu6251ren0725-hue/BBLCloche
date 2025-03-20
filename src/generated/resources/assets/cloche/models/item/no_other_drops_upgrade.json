@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cloche:item/no_other_drops_upgrade"
+  }
+}

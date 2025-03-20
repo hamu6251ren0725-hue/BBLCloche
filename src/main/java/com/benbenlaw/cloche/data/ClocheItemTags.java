@@ -23,6 +23,7 @@ public class ClocheItemTags extends ItemTagsProvider {
 
         //Upgrades
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.NO_SEEDS_UPGRADE.get());
+        tag(ClocheTags.Items.UPGRADES).add(ClocheItems.NO_OTHER_DROPS_UPGRADE.get());
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.END_UPGRADE.get());
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.NETHER_UPGRADE.get());
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.OVERWORLD_UPGRADE.get());
