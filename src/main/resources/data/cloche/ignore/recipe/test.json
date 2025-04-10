@@ -11,7 +11,7 @@
     }
   ],
   "seed": {
-    "item": "minecraft:sea_pickle"
+    "item": "colors:yellow_sapling"
   },
   "soil": {
     "tag": "c:buckets/lava"

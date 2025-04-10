@@ -1,11 +1,15 @@
 package com.benbenlaw.cloche.block.entity.client;
 
 import com.benbenlaw.cloche.block.entity.ClocheBlockEntity;
+import com.benbenlaw.core.block.brightable.BrightBlock;
+import com.benbenlaw.core.block.brightable.BrightSapling;
 import com.benbenlaw.core.block.colored.ColoredBlock;
 import com.benbenlaw.core.block.colored.util.ColorMap;
 import com.benbenlaw.core.block.colored.util.IColored;
 import com.benbenlaw.core.config.ColorTintIndexConfig;
 import com.benbenlaw.core.item.CoreDataComponents;
+import com.benbenlaw.core.util.ColorHandler;
+import com.benbenlaw.core.util.CoreTags;
 import com.benbenlaw.core.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -22,12 +26,10 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.CropBlock;
@@ -79,9 +81,29 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
             pPoseStack.scale(0.9f, 0.9f, 0.9f);
             pPoseStack.translate(0.05f,  -0.92f, 0.05f);
 
-            for (BakedQuad quad : topOfBlock) {
-                buffer.putBulkData(pPoseStack.last(), quad, 1.0f, 1.0f, 1.0f, 1.0f, pPackedLight, pPackedOverlay);
+            int tintColor = 0xFFFFFF;
+
+            if (blockItem.getBlock() instanceof BrightBlock) {
+
+                ItemStack stack = pBlockEntity.getSoil();
+
+                for (String colorTag : CoreTags.Blocks.COLOR_TAGS.keySet()) {
+                    if (stack.is(CoreTags.Items.COLOR_TAGS.get(colorTag))) {
+                        DyeColor dyeColor = DyeColor.valueOf(colorTag.toUpperCase());
+                        tintColor = ColorMap.getColorValue(dyeColor);
+
+                    }
+                }
             }
+
+            float red = (tintColor >> 16 & 0xFF) / 255.0F;
+            float green = (tintColor >> 8 & 0xFF) / 255.0F;
+            float blue = (tintColor & 0xFF) / 255.0F;
+
+            for (BakedQuad quad : topOfBlock) {
+                buffer.putBulkData(pPoseStack.last(), quad, red, green, blue, 1.0f, pPackedLight, pPackedOverlay);
+            }
+
             pPoseStack.popPose();  // Restore the PoseStack to the saved state
         }
 
@@ -111,6 +133,19 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                     DyeColor dyeColor = DyeColor.valueOf(colorName.toUpperCase());
                     tintColor = ColorMap.getColorValue(dyeColor);
 
+                }
+            }
+
+            if (blockItem.getBlock() instanceof BrightSapling) {
+
+                ItemStack stack = pBlockEntity.getSeed();
+
+                for (String colorTag : CoreTags.Blocks.COLOR_TAGS.keySet()) {
+                    if (stack.is(CoreTags.Items.COLOR_TAGS.get(colorTag))) {
+                        DyeColor dyeColor = DyeColor.valueOf(colorTag.toUpperCase());
+                        tintColor = ColorMap.getColorValue(dyeColor);
+
+                    }
                 }
             }
 
