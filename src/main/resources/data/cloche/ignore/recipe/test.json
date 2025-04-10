@@ -1,9 +1,19 @@
 {
-  "type": "cloche:speed_upgrade",
-  "ingredient": {
-    "item": "minecraft:diamond"
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:sea_pickle"
+      }
+    }
+  ],
+  "seed": {
+    "item": "minecraft:sea_pickle"
   },
-  "modifier_type": "fixed",
-  "modifier": 300
-
+  "soil": {
+    "tag": "c:buckets/lava"
+  }
 }

@@ -3,6 +3,9 @@ Changelog BBL Cloche
 
 So when you are doing cloche work, can you maybe change the rendering of the soil block so only render a bit of the block height wise, so that it doesn't look so squashed? ... It's not really needed, but it would look much better. ^^
 
+1.2.2
+Fluids in buckets now render the fluid in the cloche
+
 1.2.1
 Upgrades now stack
 Improved rendering of the cloche

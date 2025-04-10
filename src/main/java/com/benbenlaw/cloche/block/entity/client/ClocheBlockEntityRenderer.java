@@ -6,13 +6,11 @@ import com.benbenlaw.core.block.colored.util.ColorMap;
 import com.benbenlaw.core.block.colored.util.IColored;
 import com.benbenlaw.core.config.ColorTintIndexConfig;
 import com.benbenlaw.core.item.CoreDataComponents;
+import com.benbenlaw.core.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -25,6 +23,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DyeColor;
@@ -33,6 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -40,6 +40,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.joml.Matrix3f;
@@ -63,6 +64,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
 
         BlockState soilAsBlock;
 
+
         if (soilStack.getItem() instanceof BlockItem blockItem) {
             soilAsBlock = blockItem.getBlock().defaultBlockState();
 
@@ -82,6 +84,16 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
             }
             pPoseStack.popPose();  // Restore the PoseStack to the saved state
         }
+
+        if (soilStack.getItem() instanceof BucketItem bucketItem) {
+
+            Fluid fluid = bucketItem.content.defaultFluidState().getType();
+            VertexConsumer buffer = pBufferSource.getBuffer(Sheets.translucentCullBlockSheet());
+
+            renderFluid(pPoseStack.last(), buffer, pBlockEntity, fluid, 0.05F, pPackedLight);
+
+        }
+
 
         BlockState seedAsBlock;
         int progress = pBlockEntity.progress;
@@ -190,5 +202,34 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                 ModelData.EMPTY,
                 null
         );
+    }
+
+    private static void renderFluid(PoseStack.Pose pose, VertexConsumer consumer, BlockEntity entity, Fluid fluid, float fillAmount, int packedLight) {
+        int color = IClientFluidTypeExtensions.of(fluid).getTintColor(fluid.defaultFluidState(), entity.getLevel(), entity.getBlockPos());
+        //if (color == -1) color = 0xffffff;
+        renderFluid(pose, consumer, fluid, fillAmount, color, packedLight);
+    }
+
+
+    public static void renderFluid(PoseStack.Pose pose, VertexConsumer consumer, Fluid fluid, float fillAmount, int color, int packedLight) {
+        // Get fluid texture
+        IClientFluidTypeExtensions props = IClientFluidTypeExtensions.of(fluid);
+        TextureAtlasSprite texture = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(props.getStillTexture());
+
+        // Get sizes
+        float fluidHeight = (14 * fillAmount) / 16.0f;
+        float inset = 0.0625F;
+        float faceSize = 14 / 16.0f;
+
+
+        // Sides
+        RenderUtil.renderFace(Direction.SOUTH, pose, consumer, texture, inset, inset, inset, faceSize, fluidHeight, color, packedLight);
+        RenderUtil.renderFace(Direction.NORTH, pose, consumer, texture, inset, inset, inset, faceSize, fluidHeight, color, packedLight);
+        RenderUtil.renderFace(Direction.EAST, pose, consumer, texture, inset, inset, inset, faceSize, fluidHeight, color, packedLight);
+        RenderUtil.renderFace(Direction.WEST, pose, consumer, texture, inset, inset, inset, faceSize, fluidHeight, color, packedLight);
+        RenderUtil.renderFace(Direction.UP, pose, consumer, texture, inset, inset, inset + fluidHeight, faceSize, faceSize, color, packedLight);
+
+
+        RenderUtil.renderFace(Direction.DOWN, pose, consumer, texture, inset, inset, 1 - inset , faceSize, faceSize, color, packedLight);
     }
 }
