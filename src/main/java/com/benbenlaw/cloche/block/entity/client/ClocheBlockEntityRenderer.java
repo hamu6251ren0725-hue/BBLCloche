@@ -7,16 +7,26 @@ import com.benbenlaw.core.block.colored.util.IColored;
 import com.benbenlaw.core.config.ColorTintIndexConfig;
 import com.benbenlaw.core.item.CoreDataComponents;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,7 +37,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.fluids.FluidType;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+
+import java.util.List;
 
 public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBlockEntity> {
     public ClocheBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
@@ -48,26 +66,20 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
         if (soilStack.getItem() instanceof BlockItem blockItem) {
             soilAsBlock = blockItem.getBlock().defaultBlockState();
 
-            pPoseStack.pushPose();  // Save the current state of the PoseStack
+            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(soilAsBlock);
+            RandomSource consistentRandom = RandomSource.create(pBlockEntity.getBlockPos().getX());
+            List<BakedQuad> topOfBlock = model.getQuads(soilAsBlock, Direction.UP, consistentRandom , ModelData.builder().build() , RenderType.solid());
 
-            pPoseStack.scale(0.9f, 0.2f, 0.9f);
-            pPoseStack.translate(0.05f, 0.1f, 0.05f);
+            VertexConsumer buffer = pBufferSource.getBuffer(RenderType.solid());
 
-            int tintColor = 0xFFFFFF;
+            pPoseStack.pushPose();
 
-            if (blockItem.getBlock() instanceof ColoredBlock) {
-                String colorName = soilStack.get(CoreDataComponents.COLOR.get());
-                if (colorName != null) {
+            pPoseStack.scale(0.9f, 0.9f, 0.9f);
+            pPoseStack.translate(0.05f,  -0.92f, 0.05f);
 
-                    DyeColor dyeColor = DyeColor.valueOf(colorName.toUpperCase());
-                    tintColor = ColorMap.getColorValue(dyeColor);
-
-                }
+            for (BakedQuad quad : topOfBlock) {
+                buffer.putBulkData(pPoseStack.last(), quad, 1.0f, 1.0f, 1.0f, 1.0f, pPackedLight, pPackedOverlay);
             }
-
-            renderWithTint(blockRenderDispatcher, soilAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
-
-
             pPoseStack.popPose();  // Restore the PoseStack to the saved state
         }
 
@@ -110,7 +122,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
 
                     pPoseStack.pushPose();
                     pPoseStack.scale(0.8f, 0.8f, 0.8f);
-                    pPoseStack.translate(0.1f, 0.25f, 0.1f);
+                    pPoseStack.translate(0.1f, 0.1f, 0.1f);
 
                     renderWithTint(blockRenderDispatcher, seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 
@@ -127,7 +139,7 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
 
                 pPoseStack.pushPose();
                 pPoseStack.scale(0.8f, 0.8f, 0.8f);
-                pPoseStack.translate(0.1f, 0.25f, 0.1f);
+                pPoseStack.translate(0.1f, 0.1f, 0.1f);
 
                 renderWithTint(blockRenderDispatcher, seedAsBlockCrop, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 
@@ -142,14 +154,11 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
                 float maxScale = 0.6f;
                 float scale = minScale + growthProgress * (maxScale - minScale);
 
-                pPoseStack.translate(0.5f, 0.5f, 0.5f);
-
-                float initialLowerOffset = -0.3f;
-                float verticalOffset = (scale - minScale) / 2.0f;
+                pPoseStack.translate(0.5f, 0.1f, 0.5f);
 
                 pPoseStack.scale(scale, scale, scale);
-                pPoseStack.translate(0.0f, initialLowerOffset + verticalOffset, 0.0f);
-                pPoseStack.translate(-0.5f, -0.5f, -0.5f);
+
+                pPoseStack.translate(-0.5f, 0.0f, -0.5f);
 
                 renderWithTint(blockRenderDispatcher, seedAsBlock, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, tintColor);
 

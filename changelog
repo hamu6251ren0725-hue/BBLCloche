@@ -3,6 +3,10 @@ Changelog BBL Cloche
 
 So when you are doing cloche work, can you maybe change the rendering of the soil block so only render a bit of the block height wise, so that it doesn't look so squashed? ... It's not really needed, but it would look much better. ^^
 
+1.2.1
+Upgrades now stack
+Improved rendering of the cloche
+
 1.2.0
 Tweaked speed based upgrades, putting in upgrades that reduce the time below 0 ticks (example 2 percentage 50% upgrades) will no longer round to 1 tick,
     instead cloche will error and explain that the upgrades are reducing the time below 0 ticks and will not be applied
