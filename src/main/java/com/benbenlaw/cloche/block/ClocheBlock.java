@@ -63,7 +63,7 @@ public class ClocheBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite()).setValue(POWERED, false);
+        return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite()).setValue(POWERED, true);
     }
 
     /* BLOCK ENTITY */
