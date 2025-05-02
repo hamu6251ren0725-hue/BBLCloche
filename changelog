@@ -1,5 +1,14 @@
 Changelog BBL Cloche
 
+1.2.6
+Updated to core 1.1.29
+
+1.2.5
+Fixed creative name class from mod to mode
+Fixed end upgrade being valid for dimension end instead of the_end
+Fixed recipes using the end dimension instead of the_end
+Fixed translations for the end dimension
+
 1.2.4
 Cloches are now on when placed
 

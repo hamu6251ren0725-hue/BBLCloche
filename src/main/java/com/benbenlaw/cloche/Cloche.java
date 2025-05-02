@@ -2,7 +2,7 @@ package com.benbenlaw.cloche;
 
 import com.benbenlaw.cloche.block.ClocheBlocks;
 import com.benbenlaw.cloche.block.entity.ClocheBlockEntities;
-import com.benbenlaw.cloche.item.ClocheCreativeModTab;
+import com.benbenlaw.cloche.item.ClocheCreativeModeTab;
 import com.benbenlaw.cloche.item.ClocheItems;
 import com.benbenlaw.cloche.networking.ClocheMessages;
 import com.benbenlaw.cloche.recipe.ClocheRecipes;
@@ -31,7 +31,7 @@ public class Cloche{
 
         ClocheBlocks.BLOCKS.register(modEventBus);
         ClocheBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        ClocheCreativeModTab.CREATIVE_MODE_TABS.register(modEventBus);
+        ClocheCreativeModeTab.CREATIVE_MODE_TABS.register(modEventBus);
         ClocheItems.ITEMS.register(modEventBus);
         ClocheRecipes.SERIALIZER.register(modEventBus);
         ClocheRecipes.TYPES.register(modEventBus);

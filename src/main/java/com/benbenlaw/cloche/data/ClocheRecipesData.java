@@ -217,7 +217,7 @@ public class ClocheRecipesData extends RecipeProvider {
                 .unlockedBy("has_item", has(ClocheItems.NETHER_UPGRADE))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/nether"));
 
-        DimensionalUpgradeRecipeProvider.DimensionalUpgradeRecipeBuilder((Ingredient.of(ClocheItems.END_UPGRADE)), "minecraft:end")
+        DimensionalUpgradeRecipeProvider.DimensionalUpgradeRecipeBuilder((Ingredient.of(ClocheItems.END_UPGRADE)), "minecraft:the_end")
                 .unlockedBy("has_item", has(ClocheItems.END_UPGRADE))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "upgrades/end"));
 
@@ -248,7 +248,7 @@ public class ClocheRecipesData extends RecipeProvider {
 
         // Cloche Chorus Fruit
         ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(Items.CHORUS_FRUIT), Ingredient.of(Items.END_STONE), null,
-                        "minecraft:end", 1200, ResultLists.CHORUS_FRUIT_RESULTS, null)
+                        "minecraft:the_end", 1200, ResultLists.CHORUS_FRUIT_RESULTS, null)
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "cloche/chorus_fruit"));
 
         // Oak Sapling

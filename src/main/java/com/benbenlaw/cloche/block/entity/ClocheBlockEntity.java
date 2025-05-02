@@ -265,8 +265,6 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
         }
     }
 
-
-
     public boolean correctDimension(ClocheRecipe recipe) {
         assert level != null;
         String clocheDimension = String.valueOf(level.dimension().location());
