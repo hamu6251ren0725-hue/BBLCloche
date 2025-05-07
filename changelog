@@ -1,5 +1,12 @@
 Changelog BBL Cloche
 
+1.2.8
+Added twilight forest translation
+
+1.2.7
+Updated to latest NeoForge 21.1.169
+Updated ItemHandler to support new stack limit system
+
 1.2.6
 Updated to core 1.1.29
 

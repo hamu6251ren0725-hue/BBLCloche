@@ -86,6 +86,14 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
             }
             return slot;
         }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot == SEED_SLOT || slot == SOIL_SLOT || slot == CATALYST_SLOT || slot == UPGRADE_SLOT_1 || slot == UPGRADE_SLOT_2 || slot == UPGRADE_SLOT_3) {
+                return 1;
+            }
+            return slot;
+        }
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();

@@ -42,6 +42,7 @@
   "minecraft:overworld": "Overworld",
   "minecraft:the_nether": "The Nether",
   "minecraft:the_end": "The End",
+  "twilightforest:twilight_forest": "The Twilight Forest",
 
   "itemGroup.cloche": "BBL Cloche"
 }
