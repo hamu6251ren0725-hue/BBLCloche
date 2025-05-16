@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-17T11:28:31.0924449	cloche Item Models
+// 1.21.1	2025-05-16T10:52:15.735502	cloche Item Models
 f68cc7ae460358d62590d971cac54ac97f43d4d6 assets/cloche/models/item/end_upgrade.json
 2eda041b09a5f3dafaf86b866c2c1ed5e0f02d2f assets/cloche/models/item/fixed_speed_upgrade_1.json
 26ce2f264f694543eaa0b30cb064804503914fda assets/cloche/models/item/fixed_speed_upgrade_2.json
@@ -12,3 +12,4 @@ fa29e53b9aaa48741952b8ffe127d65f9b2ebabe assets/cloche/models/item/percentage_sp
 43bfa25c03631d4c905b97ca809e28c2684c9b48 assets/cloche/models/item/percentage_speed_upgrade_2.json
 c278bd7f0db160a87b65fc3e83c3c654084ac9c3 assets/cloche/models/item/percentage_speed_upgrade_3.json
 5ff11bde071b24a4054094906942125f3fcf9e4d assets/cloche/models/item/shears_upgrade.json
+52fc46540500d43a93fecd3d8187518518f2cbc2 assets/cloche/models/item/twilight_forest_upgrade.json

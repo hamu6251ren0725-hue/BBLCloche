@@ -29,6 +29,8 @@
   "item.cloche.percentage_speed_upgrade_2": "Percentage Speed Upgrade 2",
   "item.cloche.percentage_speed_upgrade_3": "Percentage Speed Upgrade 3",
 
+  "item.cloche.twilight_forest_upgrade": "Twilight Forest Upgrade",
+
   "tooltip.cloche.upgrade.dimension": "Allows plants to grow in the Cloche from: %s",
   "tooltip.cloche.upgrade.fixed_speed_upgrade": "Reduces the duration of a recipe by %s ticks. Percentage effects happen before fixed effects",
   "tooltip.cloche.upgrade.percentage_speed_upgrade": "Reduces the duration of a recipe by %s%%. Percentage effects happen before fixed effects",

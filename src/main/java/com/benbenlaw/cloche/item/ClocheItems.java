@@ -10,7 +10,7 @@ public class ClocheItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Cloche.MOD_ID);
 
-    public static final DeferredItem<Item> OVERWORLD_UPGRADE = ITEMS .register("overworld_upgrade",
+    public static final DeferredItem<Item> OVERWORLD_UPGRADE = ITEMS.register("overworld_upgrade",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHER_UPGRADE = ITEMS.register("nether_upgrade",
             () -> new Item(new Item.Properties()));
@@ -39,7 +39,9 @@ public class ClocheItems {
     public static final DeferredItem<Item> PERCENTAGE_SPEED_UPGRADE_3 = ITEMS.register("percentage_speed_upgrade_3",
             () -> new Item(new Item.Properties()));
 
-
+    //Modded Dimensional Upgrades
+    public static final DeferredItem<Item> TWILIGHT_FOREST_UPGRADE = ITEMS.register("twilight_forest_upgrade",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -33,6 +33,9 @@ public class ClocheItemModelProvider extends ItemModelProvider {
         simpleItem(ClocheItems.PERCENTAGE_SPEED_UPGRADE_1);
         simpleItem(ClocheItems.PERCENTAGE_SPEED_UPGRADE_2);
         simpleItem(ClocheItems.PERCENTAGE_SPEED_UPGRADE_3);
+
+        //Modded Dimensional Upgrades
+        simpleItem(ClocheItems.TWILIGHT_FOREST_UPGRADE);
     }
 
 

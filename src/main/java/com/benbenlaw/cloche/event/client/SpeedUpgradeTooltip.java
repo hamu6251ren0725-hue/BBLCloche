@@ -51,7 +51,7 @@ public class SpeedUpgradeTooltip {
                     components.add(newTooltip.withStyle(ChatFormatting.YELLOW));
                 }
                 else {
-                    components.add(Component.translatable("tooltips.item.shift.not_held").withStyle(ChatFormatting.YELLOW));
+                    components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
                 }
             }
         }
@@ -67,7 +67,7 @@ public class SpeedUpgradeTooltip {
                     break;
                 }
                 else {
-                    components.add(Component.translatable("tooltips.item.shift.not_held").withStyle(ChatFormatting.YELLOW));
+                    components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
                 }
             }
         }

@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -35,6 +36,10 @@ public class ClocheCreativeModeTab {
                 output.accept(ClocheItems.PERCENTAGE_SPEED_UPGRADE_3.get());
                 output.accept(ClocheItems.SHEARS_UPGRADE.get());
                 output.accept(ClocheItems.MAIN_OUTPUT_UPGRADE.get());
+
+                if (ModList.get().isLoaded("twilightforest")) {
+                    output.accept(ClocheItems.TWILIGHT_FOREST_UPGRADE.get());
+                }
 
 
             }).build());

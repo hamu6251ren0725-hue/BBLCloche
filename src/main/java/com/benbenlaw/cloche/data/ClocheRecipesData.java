@@ -12,16 +12,19 @@ import com.benbenlaw.core.item.CoreItems;
 import com.benbenlaw.core.recipe.ChanceResult;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -155,6 +158,17 @@ public class ClocheRecipesData extends RecipeProvider {
                 .group("cloche")
                 .unlockedBy("has_item", has(CoreItems.UPGRADE_BASE))
                 .save(consumer);
+
+        // Twilight Forest Upgrade - Crafting Recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ClocheItems.TWILIGHT_FOREST_UPGRADE.get())
+                .pattern(" G ")
+                .pattern("GUG")
+                .pattern(" G ")
+                .define('U', CoreItems.UPGRADE_BASE)
+                .define('G', TagKey.create(Registries.ITEM, ResourceLocation.parse("twilightforest:logs")))
+                .group("cloche")
+                .unlockedBy("has_item", has(CoreItems.UPGRADE_BASE))
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")));
 
         // No Seed Upgrade - Crafting Recipe
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ClocheItems.NO_SEEDS_UPGRADE.get())
