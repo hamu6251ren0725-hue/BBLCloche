@@ -34,6 +34,7 @@ public class ClocheMenu extends AbstractContainerMenu {
     protected ContainerData data;
     protected Player player;
     protected BlockPos blockPos;
+    public int numberOfCatalysts = 0;
 
     public ClocheMenu(int containerID, Inventory inventory, FriendlyByteBuf extraData) {
         this(containerID, inventory, extraData.readBlockPos(), new SimpleContainerData(2));
@@ -150,6 +151,14 @@ public class ClocheMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    public int getProgress() {
+        return this.data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return this.data.get(1);
+    }
+
     public Map<String, List<Ingredient>> getAllSoilOptions() {
 
         Map<String, List<Ingredient>> options = new HashMap<>();
@@ -163,6 +172,8 @@ public class ClocheMenu extends AbstractContainerMenu {
             seedOptions.add(recipe.value().getSeed());
             catalystOptions.add(recipe.value().getCatalyst());
         });
+
+        numberOfCatalysts = catalystOptions.size();
 
         options.put("soil", soilOptions);
         options.put("seed", seedOptions);

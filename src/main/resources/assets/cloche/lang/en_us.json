@@ -8,6 +8,7 @@
   "block.cloche.gui.seed_slot": "Seed Slot",
   "block.cloche.gui.soil_slot": "Soil Slot",
   "block.cloche.gui.catalyst_slot": "Catalyst Slot",
+  "block.cloche.gui.catalyst_slot_no_catalysts": "Unused Slot (No Catalysts)",
   "block.cloche.gui.upgrade_slot": "Upgrade Slot",
   "block.cloche.gui.on_off": "On/Off Button",
   "block.cloche.jei.chance": "Chance: ",

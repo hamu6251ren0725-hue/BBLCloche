@@ -20,6 +20,9 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     private static final ResourceLocation TEXTURE =
             ResourceLocation.fromNamespaceAndPath(Cloche.MOD_ID, "textures/gui/cloche.png");
@@ -79,14 +82,21 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     }
 
     private void renderSlotTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        TooltipArea[] tooltipAreas = {
-                new TooltipArea(8, 17, 16, 16, "block.cloche.gui.seed_slot"),
-                new TooltipArea(8, 35, 16, 16, "block.cloche.gui.soil_slot"),
-                new TooltipArea(8, 53, 16, 16, "block.cloche.gui.catalyst_slot"),
-                new TooltipArea(35, 53, 16, 16, "block.cloche.gui.upgrade_slot"),
-                new TooltipArea(53, 53, 16, 16, "block.cloche.gui.upgrade_slot"),
-                new TooltipArea(71, 53, 16, 16, "block.cloche.gui.upgrade_slot"),
-        };
+        List<TooltipArea> tooltipAreas = new ArrayList<>();
+
+        tooltipAreas.add(new TooltipArea(8, 17, 16, 16, "block.cloche.gui.seed_slot"));
+        tooltipAreas.add(new TooltipArea(8, 35, 16, 16, "block.cloche.gui.soil_slot"));
+        tooltipAreas.add(new TooltipArea(35, 53, 16, 16, "block.cloche.gui.upgrade_slot"));
+        tooltipAreas.add(new TooltipArea(53, 53, 16, 16, "block.cloche.gui.upgrade_slot"));
+        tooltipAreas.add(new TooltipArea(71, 53, 16, 16, "block.cloche.gui.upgrade_slot"));
+
+
+        if (menu.numberOfCatalysts == 0) {
+            tooltipAreas.add(new TooltipArea(8, 53, 16, 16, "block.cloche.gui.catalyst_slot_no_catalysts"));
+        } else {
+            tooltipAreas.add(new TooltipArea(8, 53, 16, 16, "block.cloche.gui.catalyst_slot"));
+
+        }
 
         for (TooltipArea area : tooltipAreas) {
             if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, area.offsetX, area.offsetY, area.width, area.height)) {
@@ -105,8 +115,8 @@ public class ClocheScreen extends AbstractContainerScreen<ClocheMenu> {
     @Nullable
     private void renderTickRate(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
         if (MouseUtil.isMouseAboveArea(mouseX, mouseY, x, y, 20, -17, 19, 18)) {
-            guiGraphics.renderTooltip(this.font, Component.literal(this.menu.blockEntity.progress + "/" +
-                    this.menu.blockEntity.maxProgress), mouseX, mouseY);
+            guiGraphics.renderTooltip(this.font, Component.literal(this.menu.getProgress() + "/" +
+                    this.menu.getMaxProgress()), mouseX, mouseY);
         }
     }
 

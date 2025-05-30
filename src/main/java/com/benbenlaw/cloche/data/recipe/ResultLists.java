@@ -79,6 +79,7 @@ public class ResultLists {
         JUNGLE_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.JUNGLE_LOG, 2), 1.0f));
         JUNGLE_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.JUNGLE_SAPLING), 0.2f));
         JUNGLE_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.COCOA_BEANS), 0.2f));
+        JUNGLE_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.STICK), 0.1f));
 
         ACACIA_SAPLING_RESULTS = NonNullList.create();
         ACACIA_SAPLING_RESULTS.add(new ChanceResult(new ItemStack(Items.ACACIA_LOG, 2), 1.0f));

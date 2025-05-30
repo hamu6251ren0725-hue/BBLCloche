@@ -219,13 +219,13 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
     }
 
     public void tick() {
-
         assert level != null;
         if (!level.isClientSide()) {
 
+            // Update cached recipe only if needed, and mark dirty if changed
             updateCachedRecipe();
+
             Optional<RecipeHolder<ClocheRecipe>> match = cachedRecipe;
-            sync();
 
             int recipeMaxDuration = 1000000;
             if (match.isPresent()) {
@@ -233,45 +233,68 @@ public class ClocheBlockEntity extends SyncableBlockEntity implements MenuProvid
             }
 
             if (this.getBlockState().getValue(POWERED)) {
-
                 if (match.isPresent()) {
-
-                    maxProgress = speedUpgradeLogic.getNewDuration(recipeMaxDuration, itemHandler, level);
+                    int newMax = speedUpgradeLogic.getNewDuration(recipeMaxDuration, itemHandler, level);
+                    if (newMax != maxProgress) {
+                        maxProgress = newMax;
+                        sync();
+                    }
 
                     if (maxProgress == Integer.MAX_VALUE) {
-                        errorMessage = "block.cloche.error.speed_upgrade";
+                        if (!"block.cloche.error.speed_upgrade".equals(errorMessage)) {
+                            errorMessage = "block.cloche.error.speed_upgrade";
+                            sync();
+                        }
                         resetProgress();
                         return;
                     }
 
                     ClocheRecipe currentRecipe = match.get().value();
                     if (correctDimension(currentRecipe)) {
-
                         List<ItemStack> results = currentRecipe.rollResults(level.random);
                         if (!canFitResults(results)) {
-                            errorMessage = "block.cloche.error.output_full";
+                            if (!"block.cloche.error.output_full".equals(errorMessage)) {
+                                errorMessage = "block.cloche.error.output_full";
+                                sync();
+                            }
                             return;
                         }
+
                         progress++;
-                        errorMessage = "";
                         if (progress >= maxProgress) {
                             resetProgress();
                             fillOutputSlots(currentRecipe);
+                            sync(); // Output changed
+                        }
+
+                        if (!"".equals(errorMessage)) {
+                            errorMessage = "";
+                            sync();
                         }
                     } else {
-                        errorMessage = "block.cloche.error.wrong_dimension";
+                        if (!"block.cloche.error.wrong_dimension".equals(errorMessage)) {
+                            errorMessage = "block.cloche.error.wrong_dimension";
+                            sync();
+                        }
                         resetProgress();
                     }
                 } else {
-                    errorMessage = "block.cloche.error.no_recipe";
+                    if (!"block.cloche.error.no_recipe".equals(errorMessage)) {
+                        errorMessage = "block.cloche.error.no_recipe";
+                        sync();
+                    }
                     resetProgress();
                 }
             } else {
-                errorMessage = "block.cloche.error.not_on";
+                if (!"block.cloche.error.not_on".equals(errorMessage)) {
+                    errorMessage = "block.cloche.error.not_on";
+                    sync();
+                }
                 resetProgress();
             }
         }
     }
+
 
     public boolean correctDimension(ClocheRecipe recipe) {
         assert level != null;
