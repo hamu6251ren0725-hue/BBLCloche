@@ -15,6 +15,7 @@
   "block.cloche.jei.seeds_result": "Can be removed using the No Seeds Upgrade!",
   "block.cloche.jei.main_output": "Effected by the Main Output Upgrade!",
   "block.cloche.jei.shears_result": "Only With Shears Upgrade!",
+  "block.cloche.jei.duration": "Duration: %s",
 
   "item.cloche.overworld_upgrade": "Overworld Upgrade",
   "item.cloche.nether_upgrade": "Nether Upgrade",
