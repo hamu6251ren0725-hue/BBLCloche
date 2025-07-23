@@ -121,7 +121,7 @@ public record ClocheRecipe (
                         instance.group(
                                 Ingredient.CODEC.fieldOf("seed").forGetter(ClocheRecipe::seed),
                                 Ingredient.CODEC.fieldOf("soil").forGetter(ClocheRecipe::soil),
-                                Ingredient.CODEC.fieldOf("catalyst").orElse(Ingredient.EMPTY).forGetter(ClocheRecipe::catalyst),
+                                Ingredient.CODEC.optionalFieldOf("catalyst", Ingredient.EMPTY).forGetter(ClocheRecipe::catalyst),
                                 Codec.STRING.optionalFieldOf("dimension", "all").forGetter(ClocheRecipe::dimension),
                                 Codec.INT.fieldOf("duration").forGetter(ClocheRecipe::duration),
                                 Codec.list(ChanceResult.CODEC).fieldOf("results").flatXmap(chanceResults -> {

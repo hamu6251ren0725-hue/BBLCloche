@@ -1,5 +1,8 @@
 Changelog BBL Cloche
 
+1.3.4
+If no catalyst is needed the recipe no longer asks for a catalyst
+
 1.3.3
 In JEI recipe durations now show when hovering over the + in the recipe
 
