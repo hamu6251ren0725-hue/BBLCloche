@@ -35,6 +35,7 @@ public class ClocheItemTags extends ItemTagsProvider {
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.FIXED_SPEED_UPGRADE_1.get());
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.FIXED_SPEED_UPGRADE_2.get());
         tag(ClocheTags.Items.UPGRADES).add(ClocheItems.FIXED_SPEED_UPGRADE_3.get());
+        tag(ClocheTags.Items.UPGRADES).add(ClocheItems.TWILIGHT_FOREST_UPGRADE.get());
 
 
     }
