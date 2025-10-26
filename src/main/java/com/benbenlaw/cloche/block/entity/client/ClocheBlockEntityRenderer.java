@@ -32,7 +32,9 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -68,44 +70,42 @@ public class ClocheBlockEntityRenderer implements BlockEntityRenderer<ClocheBloc
 
 
         if (soilStack.getItem() instanceof BlockItem blockItem) {
-            soilAsBlock = blockItem.getBlock().defaultBlockState();
+            Block block = blockItem.getBlock();
 
-            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(soilAsBlock);
-            RandomSource consistentRandom = RandomSource.create(pBlockEntity.getBlockPos().getX());
-            List<BakedQuad> topOfBlock = model.getQuads(soilAsBlock, Direction.UP, consistentRandom , ModelData.builder().build() , RenderType.solid());
-
-            VertexConsumer buffer = pBufferSource.getBuffer(RenderType.solid());
-
-            pPoseStack.pushPose();
-
-            pPoseStack.scale(0.9f, 0.9f, 0.9f);
-            pPoseStack.translate(0.05f,  -0.92f, 0.05f);
-
-            int tintColor = 0xFFFFFF;
-
-            if (blockItem.getBlock() instanceof BrightBlock) {
-
-                ItemStack stack = pBlockEntity.getSoil();
-
-                for (String colorTag : CoreTags.Blocks.COLOR_TAGS.keySet()) {
-                    if (stack.is(CoreTags.Items.COLOR_TAGS.get(colorTag))) {
-                        DyeColor dyeColor = DyeColor.valueOf(colorTag.toUpperCase());
-                        tintColor = ColorMap.getColorValue(dyeColor);
-
-                    }
-                }
+            // Need to handle blocks that have a non 16x16x16 model shape, like farmland
+            BlockState soilState;
+            if (block instanceof FarmBlock) {
+                soilState = block.defaultBlockState();
+            } else {
+                soilState = block.defaultBlockState();
             }
 
-            float red = (tintColor >> 16 & 0xFF) / 255.0F;
-            float green = (tintColor >> 8 & 0xFF) / 255.0F;
-            float blue = (tintColor & 0xFF) / 255.0F;
+            // Get the model and top quads
+            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(soilState);
+            RandomSource consistentRandom = RandomSource.create(pBlockEntity.getBlockPos().getX());
+            List<BakedQuad> topQuads = model.getQuads(soilState, Direction.UP, consistentRandom, ModelData.builder().build(), RenderType.cutout());
 
-            for (BakedQuad quad : topOfBlock) {
+            // Get BlockColors for tinting
+            int color = Minecraft.getInstance().getBlockColors().getColor(soilState, null, pBlockEntity.getBlockPos(), -1);
+            float red = (color >> 16 & 0xFF) / 255.0F;
+            float green = (color >> 8 & 0xFF) / 255.0F;
+            float blue = (color & 0xFF) / 255.0F;
+
+            VertexConsumer buffer = pBufferSource.getBuffer(RenderType.cutout());
+
+            pPoseStack.pushPose();
+            pPoseStack.translate(0.05f, -0.92f, 0.05f);
+            pPoseStack.scale(0.9f, 1.0f, 0.9f);
+
+            // Render top quads only
+            for (BakedQuad quad : topQuads) {
                 buffer.putBulkData(pPoseStack.last(), quad, red, green, blue, 1.0f, pPackedLight, pPackedOverlay);
             }
 
-            pPoseStack.popPose();  // Restore the PoseStack to the saved state
+            pPoseStack.popPose();
         }
+
+
 
         if (soilStack.getItem() instanceof BucketItem bucketItem) {
 

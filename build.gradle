@@ -78,6 +78,18 @@ dependencies {
     compileOnly "curse.maven:jei-238222:5846880"
     runtimeOnly "curse.maven:jei-238222:5846880"
 
+    //Mystical Agriculture
+    compileOnly "curse.maven:mystical-agriculture-246640:6373333"
+    runtimeOnly "curse.maven:mystical-agriculture-246640:6373333"
+
+    //Mystical Agradditions
+    compileOnly "curse.maven:mystical-agradditions-256247:6373339"
+    runtimeOnly "curse.maven:mystical-agradditions-256247:6373339"
+
+    //Cucumber
+    compileOnly "curse.maven:cucumber-272335:6373317"
+    runtimeOnly "curse.maven:cucumber-272335:6373317"
+
 
 }
 
